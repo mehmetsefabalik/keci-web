@@ -9,7 +9,7 @@ interface IProps {
 
 const Button: FunctionComponent<IProps> = ({ color, name }) => {
   return <>
-    <MuiButton color={color} >{name}</MuiButton>
+    <MuiButton color={color} variant="contained">{name}</MuiButton>
   </>;
 };
 export { Button };
