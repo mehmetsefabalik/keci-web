@@ -3,13 +3,14 @@ import MuiButton from "@material-ui/core/Button"
 import { useTheme } from "@material-ui/core";
 
 interface IProps {
-  color: "primary" | "secondary";
+  color?: "primary" | "secondary";
   name: string;
+  className?: string;
 };
 
-const Button: FunctionComponent<IProps> = ({ color, name }) => {
+const Button: FunctionComponent<IProps> = ({ color = "primary", name, className = "" }) => {
   return <>
-    <MuiButton color={color} variant="contained">{name}</MuiButton>
+    <MuiButton className={className} color={color} variant="contained">{name}</MuiButton>
   </>;
 };
 export { Button };

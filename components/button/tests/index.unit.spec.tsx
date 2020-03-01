@@ -17,16 +17,18 @@ describe("Button Unit Tests", () => {
 
   it("should render", () => {
     // Arrange
+    const buttonName = words(4)
 
     // Act
-    const { container, debug } = render(
+    const { container, debug, getByText } = render(
       <ThemeProvider theme={theme}>
-        <Button color="primary" name={word()} />
+        <Button color="primary" name={buttonName} />
       </ThemeProvider>
     )
 
     // Assert
     expect(container.querySelector("button")).toBeInTheDocument();
+    expect(getByText(buttonName).innerHTML).toBe(buttonName);
   });
 
 });
