@@ -3,7 +3,7 @@ import MuiButton from "@material-ui/core/Button"
 
 interface IProps {
   name: string;
-  onClick: () => null;
+  onClick: () => void;
   className?: string;
   color?: "primary" | "secondary";
 };
