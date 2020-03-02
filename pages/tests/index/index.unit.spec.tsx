@@ -20,10 +20,9 @@ describe("Home Page Unit Tests", () => {
 
     // Act
     const {container, debug} = render(<Home />)
-    debug();
-    const spy = React.createElement as any;
-    console.log(spy.getCall(1).args)
+
     // Assert
+    const spy = React.createElement as any;
     expect(spy.calledWith(BottomBar)).toBe(true);
 
   });
