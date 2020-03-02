@@ -2,8 +2,8 @@ import React from "react";
 import sinon from "sinon";
 import faker from "faker";
 import { render, cleanup, fireEvent } from "@testing-library/react";
-import Home from "../../index";
-import { BottomBar } from "../../../components/bottom-bar";
+import Home from "../../pages/index";
+import { BottomBar } from "../../components/bottom-bar";
 
 const sandbox = sinon.createSandbox();
 const { random: { number }, lorem: { word, words } } = faker;
