@@ -22,13 +22,31 @@ describe("Button Unit Tests", () => {
     // Act
     const { container, debug, getByText } = render(
       <ThemeProvider theme={theme}>
-        <Button color="primary" name={buttonName} />
+        <Button color="primary" name={buttonName} onClick={sandbox.stub()} />
       </ThemeProvider>
-    )
+    );
 
     // Assert
     expect(container.querySelector("button")).toBeInTheDocument();
     expect(getByText(buttonName).innerHTML).toBe(buttonName);
+  });
+
+  it("should call onClick", () => {
+    // Arrange
+    const buttonName = words(4);
+    const onClick = sandbox.stub();
+
+    // Act
+    const { container, debug, getByText } = render(
+      <ThemeProvider theme={theme}>
+        <Button color="primary" name={buttonName} onClick={onClick} />
+      </ThemeProvider>
+    );
+    fireEvent.click(container.querySelector("button"));
+
+    // Assert
+    expect(onClick.called).toBe(true);
+
   });
 
 });
