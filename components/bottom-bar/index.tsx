@@ -2,6 +2,7 @@ import React, { FunctionComponent } from "react";
 import { useTheme } from "@material-ui/core";
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import { ArrowRight } from '@material-ui/icons';
 import { Button } from "../button";
 
 interface IProps {
@@ -32,6 +33,7 @@ const BottomBar: FunctionComponent<IProps> = () => {
   const classes = useStyles();
   return <>
     <Paper className={classes.bottomBarWrapper}>
+      <ArrowRight color="primary" fontSize="large" />
       <Button name="SATIN AL" className={classes.buyButton} onClick={() => console.log('clicked buy')} />
     </Paper>
   </>;
