@@ -5,6 +5,7 @@ import { render, cleanup, fireEvent } from "@testing-library/react";
 import { ThemeProvider, Button, Paper } from "@material-ui/core";
 import { theme } from "../../../theme";
 import { BottomBar } from "../index";
+import { ArrowRight } from "@material-ui/icons";
 
 const sandbox = sinon.createSandbox();
 const { random: { number }, lorem: { word, words } } = faker;
@@ -30,6 +31,7 @@ describe("BottomBar Unit Tests", () => {
     const spy = React.createElement as any;
     expect(spy.calledWith(Button)).toBe(true);
     expect(spy.calledWith(Paper)).toBe(true);
+    expect(spy.calledWith(ArrowRight)).toBe(true);
 
   });
 
