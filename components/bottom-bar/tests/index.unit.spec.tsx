@@ -4,13 +4,25 @@ import faker from "faker";
 import { render, cleanup, fireEvent } from "@testing-library/react";
 import { ThemeProvider, Button, Paper } from "@material-ui/core";
 import { theme } from "../../../theme";
-import { BottomBar } from "../index";
+import { BottomBar, IProps } from "../index";
 import { ArrowRight } from "@material-ui/icons";
 
 const sandbox = sinon.createSandbox();
 const { random: { number }, lorem: { word, words } } = faker;
 
 describe("BottomBar Unit Tests", () => {
+  let props: IProps = {
+    onClick: sandbox.stub(),
+    onBuyClick: sandbox.stub()
+  }
+
+  beforeEach(() => {
+    props = {
+      onClick: sandbox.stub(),
+      onBuyClick: sandbox.stub()
+    }
+  })
+
   afterEach(() => {
     sandbox.verifyAndRestore();
     cleanup();
@@ -23,7 +35,7 @@ describe("BottomBar Unit Tests", () => {
     // Act
     const { container, debug, getByText } = render(
       <ThemeProvider theme={theme}>
-        <BottomBar />
+        <BottomBar {...props} />
       </ThemeProvider>
     );
 
