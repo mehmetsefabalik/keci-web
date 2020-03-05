@@ -24,6 +24,5 @@ describe("Home Page Unit Tests", () => {
     // Assert
     const spy = React.createElement as any;
     expect(spy.calledWith(BottomBar)).toBe(true);
-
   });
 });

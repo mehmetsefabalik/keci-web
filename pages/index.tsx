@@ -9,7 +9,7 @@ const Home = () => {
   const onBuyClick = () => {
     console.log("on buy click")
   }
-  return <BottomBar onClick={onBottomBarClick} onBuyClick={onBuyClick} />;
+  return <BottomBar onClick={onBottomBarClick} onBuyClick={onBuyClick} price={"15"} />;
 }
 
 export default Home;

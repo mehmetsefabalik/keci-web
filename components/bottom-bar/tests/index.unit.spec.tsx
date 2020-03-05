@@ -2,11 +2,11 @@ import React from "react";
 import sinon, { SinonSpy } from "sinon";
 import faker from "faker";
 import { render, cleanup, fireEvent } from "@testing-library/react";
-import { ThemeProvider, Button, Paper } from "@material-ui/core";
+import { ThemeProvider, Button, Paper, Typography } from "@material-ui/core";
 import { theme } from "../../../theme";
 import { BottomBar, IProps } from "../index";
 import { ArrowRight } from "@material-ui/icons";
-import { getPropsOfCallByComponent } from "../../../tests/utils";
+import { getPropsOfCallByComponent, logArgsOfCalls } from "../../../tests/utils";
 
 const sandbox = sinon.createSandbox();
 const { random: { number }, lorem: { word, words } } = faker;
@@ -14,13 +14,15 @@ const { random: { number }, lorem: { word, words } } = faker;
 describe("BottomBar Unit Tests", () => {
   let props: IProps = {
     onClick: sandbox.stub(),
-    onBuyClick: sandbox.stub()
+    onBuyClick: sandbox.stub(),
+    price: word(),
   }
 
   beforeEach(() => {
     props = {
       onClick: sandbox.stub(),
-      onBuyClick: sandbox.stub()
+      onBuyClick: sandbox.stub(),
+      price: word(),
     }
   })
 
@@ -34,7 +36,7 @@ describe("BottomBar Unit Tests", () => {
     sandbox.spy(React, "createElement");
 
     // Act
-    render(
+    const { getByText } = render(
       <ThemeProvider theme={theme}>
         <BottomBar {...props} />
       </ThemeProvider>
@@ -47,6 +49,9 @@ describe("BottomBar Unit Tests", () => {
     expect(spy.calledWith(Paper)).toBe(true);
     expect(getPropsOfCallByComponent(spy, Paper).onClick).toBe(props.onClick)
     expect(spy.calledWith(ArrowRight)).toBe(true);
+    expect(spy.calledWith(Typography)).toBe(true);
+    expect(spy.calledWith(Typography, { color: "primary" })).toBe(true);
+    expect(getByText(`${props.price}₺`)).toBeInTheDocument();
   });
 
 });

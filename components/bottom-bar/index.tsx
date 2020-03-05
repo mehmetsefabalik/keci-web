@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { useTheme } from "@material-ui/core";
+import { useTheme, Typography } from "@material-ui/core";
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { ArrowRight } from '@material-ui/icons';
@@ -8,6 +8,7 @@ import { Button } from "../button";
 export interface IProps {
   onClick: () => void;
   onBuyClick: () => void;
+  price: string;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -34,12 +35,12 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const BottomBar: FunctionComponent<IProps> = ({onClick, onBuyClick}) => {
-  const theme = useTheme();
+const BottomBar: FunctionComponent<IProps> = ({onClick, onBuyClick, price}) => {
   const classes = useStyles();
   return <>
     <Paper className={classes.bottomBarWrapper} onClick={onClick}>
       <ArrowRight color="primary" fontSize="large" className={classes.arrowRight} />
+      <Typography>Toplam:</Typography>&nbsp;<Typography color="primary">{price}₺</Typography>
       <Button name="SATIN AL" className={classes.buyButton} onClick={onBuyClick} />
     </Paper>
   </>;
