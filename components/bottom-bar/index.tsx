@@ -7,7 +7,7 @@ import { Button } from "../button";
 
 export interface IProps {
   onClick: () => void;
-  onBuyClick: () => void;
+  onBuyClick: (e?: any) => void;
   price: string;
 }
 

@@ -6,8 +6,9 @@ const Home = () => {
     console.log("on bottom bar click")
   }
 
-  const onBuyClick = () => {
+  const onBuyClick = e => {
     console.log("on buy click")
+    e.stopPropagation();
   }
   return <BottomBar onClick={onBottomBarClick} onBuyClick={onBuyClick} price={"15"} />;
 }
