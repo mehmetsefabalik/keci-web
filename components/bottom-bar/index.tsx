@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { useTheme, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { ArrowRight } from '@material-ui/icons';

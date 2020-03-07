@@ -13,4 +13,5 @@ const Button: FunctionComponent<IProps> = ({ color = "primary", name, className 
     <MuiButton className={className} onClick={onClick} color={color} variant="contained">{name}</MuiButton>
   </>;
 };
+
 export { Button };
