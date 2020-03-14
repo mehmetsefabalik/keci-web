@@ -3,6 +3,7 @@ import { Paper, makeStyles, Theme, createStyles } from "@material-ui/core";
 import { theme } from "../../theme";
 import { Button } from "../button";
 import { ProductImage } from "./product-image";
+import { ProductContent } from "./product-content";
 
 interface IProps {
 
@@ -22,6 +23,7 @@ const ProductCard: FunctionComponent<IProps> = () => {
 
   return <Paper className={classes.paper} elevation={3}>
     <ProductImage />
+    <ProductContent name={"1 lt Doğal Keçi Sütü"} price={15} oldPrice={20} />
     {/*
     <ProductImage />
     <ProductContent />
