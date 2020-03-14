@@ -1,34 +1,35 @@
 import React from "react";
-import sinon from "sinon";
+import sinon, { SinonSpy } from "sinon";
 import faker from "faker";
 import { render, cleanup, fireEvent } from "@testing-library/react";
-import { ThemeProvider, Paper } from "@material-ui/core";
+import { ThemeProvider } from "@material-ui/core";
 import { theme } from "../../../theme";
-import { ProductCard } from "..";
+import { ProductImage } from "../product-image";
 
 const sandbox = sinon.createSandbox();
 const { random: { number }, lorem: { word, words } } = faker;
 
-describe("Product Card Unit Tests", () => {
+describe("Product Image Unit Tests", () => {
   afterEach(() => {
     sandbox.verifyAndRestore();
     cleanup();
   });
 
-  it("should render", () => {
+  it("should render required components", () => {
     // Arrange
     sandbox.spy(React, "createElement");
 
     // Act
     const { container, debug, getByText } = render(
       <ThemeProvider theme={theme}>
-        <ProductCard />
+        <ProductImage />
       </ThemeProvider>
     );
 
     // Assert
-    const spy = React.createElement as any;
-    expect(spy.calledWith(Paper)).toBe(true);
+    const spy = React.createElement as SinonSpy;
+    expect(spy.calledWith("img")).toBe(true);
 
   });
+
 });
