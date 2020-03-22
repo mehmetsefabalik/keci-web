@@ -6,7 +6,7 @@ import { ThemeProvider, Button, Paper, Typography } from "@material-ui/core";
 import { theme } from "../../../theme";
 import { BottomBar, IProps } from "../index";
 import { ArrowRight } from "@material-ui/icons";
-import { getPropsOfCallByComponent, logArgsOfCalls } from "../../../tests/utils";
+import { getPropsOfCallByComponent, logArgsOfCalls, getArgsOfCallByComponent } from "../../../tests/utils";
 
 const sandbox = sinon.createSandbox();
 const { random: { number }, lorem: { word, words } } = faker;
@@ -50,7 +50,7 @@ describe("BottomBar Unit Tests", () => {
     expect(getPropsOfCallByComponent(spy, Paper).onClick).toBe(props.onClick)
     expect(spy.calledWith(ArrowRight)).toBe(true);
     expect(spy.calledWith(Typography)).toBe(true);
-    expect(spy.calledWith(Typography, { color: "primary" })).toBe(true);
+    expect(getArgsOfCallByComponent(spy, Typography, 1)[2]).toBe(props.price);
     expect(getByText(`${props.price}₺`)).toBeInTheDocument();
   });
 

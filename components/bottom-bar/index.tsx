@@ -31,6 +31,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     arrowRight: {
       marginLeft: "10px"
+    },
+    price: {
+      fontSize: "18px"
     }
   }),
 );
@@ -40,7 +43,7 @@ const BottomBar: FunctionComponent<IProps> = ({onClick, onBuyClick, price}) => {
   return <>
     <Paper className={classes.bottomBarWrapper} onClick={onClick}>
       <ArrowRight color="primary" fontSize="large" className={classes.arrowRight} />
-      <Typography>Toplam:</Typography>&nbsp;<Typography color="primary">{price}₺</Typography>
+      <Typography>Toplam:</Typography>&nbsp;<Typography className={classes.price} color="primary">{price}₺</Typography>
       <Button name="SATIN AL" className={classes.buyButton} onClick={onBuyClick} />
     </Paper>
   </>;

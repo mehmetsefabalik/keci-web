@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
     wrapper: {
       display: "flex",
       border: "1.3px solid",
-      padding: "2px",
+      padding: "2px 5px",
       borderRadius: "5px",
       borderColor: theme.palette.primary.main,
       alignItems: "center"
@@ -21,8 +21,9 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.primary.main
     },
     text: {
-      fontSize: "11px",
-      paddingLeft: "4px"
+      fontSize: "12px",
+      paddingLeft: "10px",
+      color: "#666666",
     }
   }),
 );
