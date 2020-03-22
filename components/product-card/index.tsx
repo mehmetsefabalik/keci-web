@@ -21,14 +21,9 @@ const useStyles = makeStyles((theme: Theme) =>
 const ProductCard: FunctionComponent<IProps> = () => {
   const classes = useStyles(theme);
 
-  return <Paper className={classes.paper} elevation={3}>
+  return <Paper className={classes.paper} elevation={2}>
     <ProductImage />
     <ProductContent name={"1 lt Doğal Keçi Sütü"} price={15} oldPrice={20} />
-    {/*
-    <ProductImage />
-    <ProductContent />
-    <Button />
-    */}
   </Paper>;
 };
 export { ProductCard };
