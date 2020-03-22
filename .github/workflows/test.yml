@@ -9,8 +9,10 @@ jobs:
     name: test
     runs-on: ubuntu-latest
     steps:
+      - name: working directory
+        run: pwd
       - name: list files
-        run: ls
+        run: ls -la
       - name: install dependencies
         run: npm i
       - name: run test
