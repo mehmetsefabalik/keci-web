@@ -39,8 +39,8 @@ describe("Product Content Unit Tests", () => {
     const spy = React.createElement as SinonSpy;
     expect(spy.calledWith(Typography)).toBe(true);
     expect(getByText(props.name)).toBeInTheDocument();
-    expect(getByText(props.price.toString())).toBeInTheDocument();
-    expect(getByText(props.oldPrice.toString())).toBeInTheDocument();
+    expect(getByText(`${props.price.toString()} ₺`)).toBeInTheDocument();
+    expect(getByText(`${props.oldPrice.toString()} ₺`)).toBeInTheDocument();
 
   });
 
