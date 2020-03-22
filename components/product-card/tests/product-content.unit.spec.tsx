@@ -5,6 +5,7 @@ import { render, cleanup, fireEvent } from "@testing-library/react";
 import { ThemeProvider, Typography } from "@material-ui/core";
 import { theme } from "../../../theme";
 import { ProductContent } from "../product-content";
+import { PriceBadge } from "../price-badge";
 
 const sandbox = sinon.createSandbox();
 const { random: { number }, lorem: { word, words } } = faker;
@@ -38,8 +39,8 @@ describe("Product Content Unit Tests", () => {
     // Assert
     const spy = React.createElement as SinonSpy;
     expect(spy.calledWith(Typography)).toBe(true);
+    expect(spy.calledWith(PriceBadge)).toBe(true);
     expect(getByText(props.name)).toBeInTheDocument();
-    expect(getByText(`${props.price.toString()} ₺`)).toBeInTheDocument();
     expect(getByText(`${props.oldPrice.toString()} ₺`)).toBeInTheDocument();
 
   });

@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { Paper, makeStyles, Theme, createStyles } from "@material-ui/core";
-import { theme } from "../../theme";
+import { Paper, makeStyles, Theme, createStyles, useTheme } from "@material-ui/core";
 import { Button } from "../button";
 import { ProductImage } from "./product-image";
 import { ProductContent } from "./product-content";
@@ -19,6 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const ProductCard: FunctionComponent<IProps> = () => {
+  const theme = useTheme();
   const classes = useStyles(theme);
 
   return <Paper className={classes.paper} elevation={2}>

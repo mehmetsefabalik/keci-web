@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
-import { Typography, makeStyles, createStyles, Theme } from "@material-ui/core";
-import { theme } from "../../theme";
+import { Typography, makeStyles, createStyles, Theme, useTheme } from "@material-ui/core";
+import { PriceBadge } from "./price-badge";
 
 interface IProps {
   name: string;
@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
       lineHeight: "20px"
     },
     priceWrapper: {
+      marginTop: "5px",
       display: "flex",
       justifyContent: "space-between"
     },
@@ -29,11 +30,12 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const ProductContent: FunctionComponent<IProps> = ({ name, price, oldPrice }) => {
+  const theme = useTheme();
   const styles = useStyles(theme);
   return <div className={styles.wrapper}>
     <Typography variant="h6" className={styles.name} >{name}</Typography>
     <div className={styles.priceWrapper}>
-      <Typography variant="subtitle1" >{price} ₺</Typography>
+      <PriceBadge price={price} text={"Özel İndirim"} />
       <Typography variant="subtitle1" className={styles.oldPrice} >{oldPrice} ₺</Typography>
     </div>
   </div>;
