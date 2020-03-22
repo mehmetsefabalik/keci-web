@@ -9,21 +9,22 @@ interface IProps {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     wrapper: {
-      display: "flex",
       border: "1.3px solid",
-      padding: "2px 5px",
+      padding: "3px 8px",
       borderRadius: "5px",
       borderColor: theme.palette.primary.main,
       alignItems: "center"
     },
     price: {
       fontSize: "18px",
-      color: theme.palette.primary.main
+      color: theme.palette.primary.main,
+      lineHeight: "1"
     },
     text: {
       fontSize: "12px",
-      paddingLeft: "10px",
       color: "#666666",
+      textOverflow: "ellipse",
+      overflow: "hidden"
     }
   }),
 );
@@ -33,8 +34,8 @@ const PriceBadge: FunctionComponent<IProps> = ({ price, text }) => {
   const classes = useStyles(theme);
 
   return <div className={classes.wrapper}>
-    <span className={classes.price}>{price}₺</span>
     <div className={classes.text}>{text}</div>
+    <div className={classes.price}>{price}₺</div>
   </div>;
 };
 export { PriceBadge };

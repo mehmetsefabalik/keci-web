@@ -20,7 +20,8 @@ const useStyles = makeStyles((theme: Theme) =>
     priceWrapper: {
       marginTop: "5px",
       display: "flex",
-      justifyContent: "space-between"
+      justifyContent: "space-between",
+      alignItems: "center"
     },
     oldPrice: {
       color: "#999999",
@@ -35,8 +36,8 @@ const ProductContent: FunctionComponent<IProps> = ({ name, price, oldPrice }) =>
   return <div className={styles.wrapper}>
     <Typography variant="h6" className={styles.name} >{name}</Typography>
     <div className={styles.priceWrapper}>
-      <PriceBadge price={price} text={"Özel İndirim"} />
       <Typography variant="subtitle1" className={styles.oldPrice} >{oldPrice} ₺</Typography>
+      <PriceBadge price={price} text={"Özel İndirim"} />
     </div>
   </div>;
 };

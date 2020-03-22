@@ -12,7 +12,8 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     paper: {
       height: "40vh",
-      width: "45vw"
+      width: "45vw",
+      minHeight: "300px"
     },
   }),
 );
