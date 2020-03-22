@@ -6,11 +6,13 @@ interface IProps {
   onClick: () => void;
   className?: string;
   color?: "primary" | "secondary";
+  fullWidth?: boolean;
+  variant?: "outlined" | "contained";
 };
 
-const Button: FunctionComponent<IProps> = ({ color = "primary", name, className = "", onClick }) => {
+const Button: FunctionComponent<IProps> = ({ color = "primary", name, className = "", onClick, fullWidth = false, variant = "contained" }) => {
   return <>
-    <MuiButton className={className} onClick={onClick} color={color} variant="contained">{name}</MuiButton>
+    <MuiButton className={className} onClick={onClick} color={color} variant={variant} fullWidth={fullWidth}>{name}</MuiButton>
   </>;
 };
 

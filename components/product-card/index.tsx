@@ -11,10 +11,16 @@ interface IProps {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     paper: {
-      height: "40vh",
       width: "45vw",
-      minHeight: "300px"
+      height: "320px",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-between",
+      padding: "5px 0"
     },
+    addToBasketWrapper: {
+      padding: "2px 5px"
+    }
   }),
 );
 
@@ -22,9 +28,16 @@ const ProductCard: FunctionComponent<IProps> = () => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
+  const onAddToBasketClick = () => {
+    console.log("add to basket");
+  };
+
   return <Paper className={classes.paper} elevation={2}>
     <ProductImage />
     <ProductContent name={"1 lt Doğal Keçi Sütü"} price={15} oldPrice={20} />
+    <div className={classes.addToBasketWrapper}>
+      <Button onClick={onAddToBasketClick} name="Sepete Ekle" variant="outlined" fullWidth={true} />
+    </div>
   </Paper>;
 };
 export { ProductCard };
