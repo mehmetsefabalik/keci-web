@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
       border: "1.3px solid",
       padding: "3px 8px",
       borderRadius: "5px",
-      borderColor: theme.palette.primary.main,
+      borderColor: theme.palette.secondary.main,
       alignItems: "center"
     },
     price: {
