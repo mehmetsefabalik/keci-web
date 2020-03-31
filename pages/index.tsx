@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BottomBar } from '../components/bottom-bar';
 import { ProductCard } from "../components/product-card";
 import { makeStyles, Theme, createStyles } from "@material-ui/core";
+import { api } from "../common/constant";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -15,9 +16,23 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Home = () => {
   const classes = useStyles();
+  const [listings, setListings] = useState([]);
+
   const onBottomBarClick = () => {
     console.log("on bottom bar click");
   };
+
+  const fetchListings = async () => {
+    const listingResponse = await fetch(`${api.mobile}/listings`, { method: 'GET' });
+    if (listingResponse.ok) {
+      const listings = await listingResponse.json();
+      setListings(listings);
+    }
+  };
+
+  useEffect(() => {
+    fetchListings();
+  }, []);
 
   const onBuyClick = e => {
     console.log("on buy click");
@@ -25,8 +40,9 @@ const Home = () => {
   };
   return <>
     <div className={classes.products}>
-      <ProductCard />
-      <ProductCard />
+      {
+        listings.map((listing, i) => <ProductCard key={i.toString()} name={listing.product.name} price={listing.product.price} oldPrice={listing.product.old_price} imageUrl={listing.product.image_url} />)
+      }
     </div>
     <BottomBar onClick={onBottomBarClick} onBuyClick={onBuyClick} price={"15"} />
   </>;

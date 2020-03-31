@@ -12,6 +12,13 @@ const sandbox = sinon.createSandbox();
 const { random: { number }, lorem: { word, words } } = faker;
 
 describe("Product Card Unit Tests", () => {
+  const props: any = {};
+  beforeEach(() => {
+    props.name = words(3);
+    props.price = number();
+    props.oldPrice = number();
+    props.imageUrl = words(3);
+  });
   afterEach(() => {
     sandbox.verifyAndRestore();
     cleanup();
@@ -24,7 +31,7 @@ describe("Product Card Unit Tests", () => {
     // Act
     const { container, debug, getByText } = render(
       <ThemeProvider theme={theme}>
-        <ProductCard />
+        <ProductCard {...props} />
       </ThemeProvider>
     );
 

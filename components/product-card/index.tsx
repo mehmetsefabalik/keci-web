@@ -5,7 +5,10 @@ import { ProductImage } from "./product-image";
 import { ProductContent } from "./product-content";
 
 interface IProps {
-
+  name: string;
+  price: number;
+  oldPrice: number;
+  imageUrl: string;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -24,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const ProductCard: FunctionComponent<IProps> = () => {
+const ProductCard: FunctionComponent<IProps> = ({ name, price, oldPrice, imageUrl }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -33,8 +36,8 @@ const ProductCard: FunctionComponent<IProps> = () => {
   };
 
   return <Paper className={classes.paper} elevation={2}>
-    <ProductImage />
-    <ProductContent name={"1 lt Doğal Keçi Sütü"} price={15} oldPrice={20} />
+    <ProductImage src={imageUrl} />
+    <ProductContent name={name} price={price} oldPrice={oldPrice} />
     <div className={classes.addToBasketWrapper}>
       <Button onClick={onAddToBasketClick} name="Sepete Ekle" variant="outlined" fullWidth={true} />
     </div>

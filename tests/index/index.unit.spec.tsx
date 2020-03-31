@@ -10,6 +10,9 @@ const sandbox = sinon.createSandbox();
 const { random: { number }, lorem: { word, words } } = faker;
 
 describe("Home Page Unit Tests", () => {
+  beforeEach(() => {
+    window.fetch = sandbox.stub().returns({ok: true, json: sandbox.stub().resolves([])});
+  });
   afterEach(() => {
     sandbox.verifyAndRestore();
     cleanup();
@@ -20,7 +23,7 @@ describe("Home Page Unit Tests", () => {
     sandbox.spy(React, "createElement");
 
     // Act
-    const {container, debug} = render(<Home />)
+    const { container, debug } = render(<Home />);
 
     // Assert
     const spy = React.createElement as any;
@@ -33,9 +36,9 @@ describe("Home Page Unit Tests", () => {
     const eventStub = sandbox.stub();
 
     // Act
-    const {container, debug} = render(<Home />)
+    const { container, debug } = render(<Home />);
     const spy = React.createElement as any;
-    getPropsOfCallByComponent(spy, BottomBar).onBuyClick({ stopPropagation: eventStub })
+    getPropsOfCallByComponent(spy, BottomBar).onBuyClick({ stopPropagation: eventStub });
 
     // Assert
     expect(eventStub.called).toBe(true);
