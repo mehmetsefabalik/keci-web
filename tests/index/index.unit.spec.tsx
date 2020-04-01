@@ -46,18 +46,15 @@ describe("Home Page Unit Tests", () => {
 
   });
 
-  it("should fetch listings", () => {
+  it("should fetch listings and contents", () => {
     // Arrange
     sandbox.spy(React, "createElement");
-    const eventStub = sandbox.stub();
 
     // Act
-    const { container, debug } = render(<Home />);
-    const spy = React.createElement as any;
-    getPropsOfCallByComponent(spy, BottomBar).onBuyClick({ stopPropagation: eventStub });
+    render(<Home />);
 
     // Assert
-    expect(eventStub.called).toBe(true);
     expect((window.fetch as SinonStub).calledWithExactly(`${api.mobile}/listings`, {method: 'GET'}))
+    expect((window.fetch as SinonStub).calledWithExactly(`${api.mobile}/contents`, {method: 'GET'}))
   });
 });

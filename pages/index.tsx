@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const Home = () => {
   const classes = useStyles();
   const [listings, setListings] = useState([]);
+  const [contents, setContents] = useState([]);
 
   const onBottomBarClick = () => {
     console.log("on bottom bar click");
@@ -30,8 +31,17 @@ const Home = () => {
     }
   };
 
+  const fetchContents = async () => {
+    const contentResponse = await fetch(`${api.mobile}/contents`, { method: 'GET' });
+    if (contentResponse.ok) {
+      const contents = await contentResponse.json();
+      setContents(contents);
+    }
+  };
+
   useEffect(() => {
     fetchListings();
+    fetchContents();
   }, []);
 
   const onBuyClick = e => {
