@@ -5,7 +5,7 @@ import { render, cleanup, fireEvent } from "@testing-library/react";
 import { ThemeProvider, Button, Paper, Typography } from "@material-ui/core";
 import { theme } from "../../../theme";
 import { BottomBar, IProps } from "../index";
-import { ArrowRight } from "@material-ui/icons";
+import { ShoppingCart } from "@material-ui/icons";
 import { getPropsOfCallByComponent, logArgsOfCalls, getArgsOfCallByComponent } from "../../../tests/utils";
 
 const sandbox = sinon.createSandbox();
@@ -48,7 +48,7 @@ describe("BottomBar Unit Tests", () => {
     expect(getPropsOfCallByComponent(spy, Button).onClick).toBe(props.onBuyClick)
     expect(spy.calledWith(Paper)).toBe(true);
     expect(getPropsOfCallByComponent(spy, Paper).onClick).toBe(props.onClick)
-    expect(spy.calledWith(ArrowRight)).toBe(true);
+    expect(spy.calledWith(ShoppingCart)).toBe(true);
     expect(spy.calledWith(Typography)).toBe(true);
     expect(getArgsOfCallByComponent(spy, Typography, 1)[2]).toBe(props.price);
     expect(getByText(`${props.price}₺`)).toBeInTheDocument();
