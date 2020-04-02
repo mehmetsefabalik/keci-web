@@ -33,7 +33,9 @@ const Home = () => {
     const listingResponse = await fetch(`${api.mobile}/listings`, { method: 'GET' });
     if (listingResponse.ok) {
       const listings = await listingResponse.json();
-      setListings(listings);
+      if (Array.isArray(listings) && listings.length > 0) {
+        setListings(listings);
+      }
     }
   };
 
@@ -41,7 +43,9 @@ const Home = () => {
     const contentResponse = await fetch(`${api.mobile}/contents`, { method: 'GET' });
     if (contentResponse.ok) {
       const contents = await contentResponse.json();
-      setContents(contents);
+      if (Array.isArray(contents) && contents.length > 0) {
+        setContents(contents);
+      }
     }
   };
 
