@@ -18,7 +18,8 @@ const useStyles = makeStyles((theme: Theme) =>
     header: {
       fontSize: "16px",
       padding: "10px",
-      overflow: "hidden"
+      overflow: "hidden",
+      fontWeight: "bold",
     },
     text: {
       padding: "10px",
