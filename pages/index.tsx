@@ -4,6 +4,7 @@ import { ProductCard } from "../components/product-card";
 import { makeStyles, Theme, createStyles } from "@material-ui/core";
 import { api } from "../common/constant";
 import { ContentCard } from "../components/content-card";
+import { BottomDrawer } from "../components/bottom-drawer";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,8 +28,10 @@ const Home = () => {
   const classes = useStyles();
   const [listings, setListings] = useState([]);
   const [contents, setContents] = useState([]);
+  const [bottomDrawerIsOpen, setBottomDrawerIsOpen] = useState(false);
 
   const onBottomBarClick = () => {
+    setBottomDrawerIsOpen(true);
     console.log("on bottom bar click");
   };
 
@@ -72,6 +75,7 @@ const Home = () => {
         contents.map((content, i) => <ContentCard key={i.toString()} header={content.header} text={content.text} />)
       }
     </div>
+    <BottomDrawer open={bottomDrawerIsOpen} setOpen={(isOpen) => setBottomDrawerIsOpen(isOpen)} />
     <BottomBar onClick={onBottomBarClick} onBuyClick={onBuyClick} price={"15"} />
   </div>;
 };
