@@ -6,6 +6,16 @@ export interface IBasket {
   _id: IObjectId;
   user_id: IObjectId;
   content: IBasketItem[];
+  product_info: IProduct[];
+}
+
+export interface IProduct {
+  _id: IObjectId;
+  product_unit_id: IObjectId;
+  name: string;
+  size: string;
+  price: number;
+  old_price: number;
 }
 
 export interface IBasketItem {
