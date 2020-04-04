@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: "16px",
       padding: "10px",
       overflow: "hidden",
-      fontWeight: "bold",
+      fontWeight: 500,
     },
     text: {
       padding: "10px",

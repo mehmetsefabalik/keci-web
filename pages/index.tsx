@@ -7,6 +7,9 @@ import { ContentCard } from "../components/content-card";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    wrapper: {
+      marginBottom: "120px"
+    },
     products: {
       display: "flex",
       justifyContent: "space-between",
@@ -15,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
     contents: {
       display: "flex",
       justifyContent: "space-between",
-      margin: "10px 10px 80px 10px"
+      margin: "10px"
     }
   }),
 );
@@ -58,7 +61,7 @@ const Home = () => {
     console.log("on buy click");
     e.stopPropagation();
   };
-  return <>
+  return <div className={classes.wrapper}>
     <div className={classes.products}>
       {
         listings.map((listing, i) => <ProductCard key={i.toString()} name={listing.product.name} price={listing.product.price} oldPrice={listing.product.old_price} imageUrl={listing.product.image_url} />)
@@ -70,7 +73,7 @@ const Home = () => {
       }
     </div>
     <BottomBar onClick={onBottomBarClick} onBuyClick={onBuyClick} price={"15"} />
-  </>;
+  </div>;
 };
 
 export default Home;

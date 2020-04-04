@@ -8,7 +8,7 @@ interface IProps {
 
 const Header: FunctionComponent<IProps> = () => {
   return <>
-    <AppBar position="static" color="transparent">
+    <AppBar position="sticky" color="transparent">
       <Toolbar>
         <IconButton edge="start" color="inherit" aria-label="menu">
           <Menu />
