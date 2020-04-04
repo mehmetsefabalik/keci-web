@@ -3,7 +3,7 @@ import sinon, { SinonStub } from "sinon";
 import faker from "faker";
 import { render, cleanup, fireEvent } from "@testing-library/react";
 import { ThemeProvider, SwipeableDrawer } from "@material-ui/core";
-import { theme } from "../../../theme";
+import { theme } from "../../../context/theme";
 import { BottomDrawer } from "..";
 import { IProps } from "../index";
 import { getPropsOfCallByComponent } from "../../../tests/utils";

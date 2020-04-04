@@ -3,7 +3,7 @@ import sinon, { SinonSpy } from "sinon";
 import faker from "faker";
 import { render, cleanup, fireEvent } from "@testing-library/react";
 import { ThemeProvider, Button, Paper, Typography } from "@material-ui/core";
-import { theme } from "../../../theme";
+import { theme } from "../../../context/theme";
 import { BottomBar, IProps } from "../index";
 import { ShoppingCart } from "@material-ui/icons";
 import { getPropsOfCallByComponent, logArgsOfCalls, getArgsOfCallByComponent } from "../../../tests/utils";

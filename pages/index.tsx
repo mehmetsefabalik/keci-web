@@ -75,6 +75,9 @@ const Home = () => {
         contents.map((content, i) => <ContentCard key={i.toString()} header={content.header} text={content.text} />)
       }
     </div>
+    {
+      // TODO: add bottom drawer unit tests
+    }
     <BottomDrawer open={bottomDrawerIsOpen} setOpen={(isOpen) => setBottomDrawerIsOpen(isOpen)} />
     <BottomBar onClick={onBottomBarClick} onBuyClick={onBuyClick} price={"15"} />
   </div>;

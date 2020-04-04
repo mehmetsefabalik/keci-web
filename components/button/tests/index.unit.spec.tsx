@@ -4,7 +4,7 @@ import faker from "faker";
 import { render, cleanup, fireEvent } from "@testing-library/react";
 import { Button } from "../index";
 import { ThemeProvider } from "@material-ui/core/styles";
-import { theme } from "../../../theme";
+import { theme } from "../../../context/theme";
 
 const sandbox = sinon.createSandbox();
 const { random: { number }, lorem: { word, words } } = faker;

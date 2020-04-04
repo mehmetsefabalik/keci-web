@@ -3,7 +3,7 @@ import sinon from "sinon";
 import faker from "faker";
 import { render, cleanup, fireEvent } from "@testing-library/react";
 import { ThemeProvider, Paper } from "@material-ui/core";
-import { theme } from "../../../theme";
+import { theme } from "../../../context/theme";
 import { ProductCard } from "..";
 import { ProductImage } from "../product-image";
 import { ProductContent } from "../product-content";
