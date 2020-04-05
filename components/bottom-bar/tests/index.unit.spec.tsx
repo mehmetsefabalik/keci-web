@@ -6,7 +6,8 @@ import { ThemeProvider, Button, Paper, Typography, Badge } from "@material-ui/co
 import { theme } from "../../../context/theme";
 import { BottomBar, IProps } from "../index";
 import { ShoppingCart } from "@material-ui/icons";
-import { getPropsOfCallByComponent, logArgsOfCalls, getArgsOfCallByComponent } from "../../../tests/utils";
+import { getPropsOfCallByComponent } from "../../../tests/utils";
+import { basketFactory } from "../../../tests/factories";
 import { BasketProvider } from "../../../context/basket";
 
 const sandbox = sinon.createSandbox();
@@ -17,7 +18,8 @@ describe("BottomBar Unit Tests", () => {
     onClick: sandbox.stub(),
     onBuyClick: sandbox.stub(),
   };
-  let totalAmount = number({min: 1});
+  let totalAmount = number({ min: 1 });
+  let basket = basketFactory();
 
   beforeEach(() => {
     totalAmount = number({ min: 1 });
@@ -38,7 +40,7 @@ describe("BottomBar Unit Tests", () => {
 
     // Act
     const { getByText } = render(
-      <BasketProvider value={{ totalAmount }}>
+      <BasketProvider value={{ basket, totalAmount }}>
         <ThemeProvider theme={theme}>
           <BottomBar {...props} />
         </ThemeProvider>
@@ -63,7 +65,7 @@ describe("BottomBar Unit Tests", () => {
 
     // Act
     const { queryByText } = render(
-      <BasketProvider value={{ totalAmount }}>
+      <BasketProvider value={{ basket, totalAmount }}>
         <ThemeProvider theme={theme}>
           <BottomBar {...props} />
         </ThemeProvider>

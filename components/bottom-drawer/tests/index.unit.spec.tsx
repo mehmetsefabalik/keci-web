@@ -7,6 +7,8 @@ import { theme } from "../../../context/theme";
 import { BottomDrawer } from "..";
 import { IProps } from "../index";
 import { getPropsOfCallByComponent } from "../../../tests/utils";
+import { basketFactory } from "../../../tests/factories";
+import { BasketProvider } from "../../../context/basket";
 
 const sandbox = sinon.createSandbox();
 const { random: { number }, lorem: { word, words } } = faker;
@@ -16,6 +18,9 @@ describe("BottomDrawer Unit Tests", () => {
     open: false,
     setOpen: sandbox.stub()
   };
+  let totalAmount = number({ min: 1 });
+  let basket = basketFactory();
+
   afterEach(() => {
     props = {
       open: false,
@@ -31,9 +36,11 @@ describe("BottomDrawer Unit Tests", () => {
 
     // Act
     render(
-      <ThemeProvider theme={theme}>
-        <BottomDrawer {...props} />
-      </ThemeProvider>
+      <BasketProvider value={{ basket, totalAmount }}>
+        <ThemeProvider theme={theme}>
+          <BottomDrawer {...props} />
+        </ThemeProvider>
+      </BasketProvider>
     );
 
     // Assert
@@ -51,11 +58,13 @@ describe("BottomDrawer Unit Tests", () => {
     props.open = true;
     // Act
     const { debug } = render(
-      <ThemeProvider theme={theme}>
-        <BottomDrawer {...props} />
-      </ThemeProvider>
+      <BasketProvider value={{ basket, totalAmount }}>
+        <ThemeProvider theme={theme}>
+          <BottomDrawer {...props} />
+        </ThemeProvider>
+      </BasketProvider>
     );
-    getPropsOfCallByComponent(spy, SwipeableDrawer).onClose()
+    getPropsOfCallByComponent(spy, SwipeableDrawer).onClose();
 
     // Assert
     expect((props.setOpen as SinonStub).calledWithExactly(false)).toBe(true);
@@ -67,11 +76,13 @@ describe("BottomDrawer Unit Tests", () => {
     props.open = true;
     // Act
     const { debug } = render(
-      <ThemeProvider theme={theme}>
-        <BottomDrawer {...props} />
-      </ThemeProvider>
+      <BasketProvider value={{ basket, totalAmount }}>
+        <ThemeProvider theme={theme}>
+          <BottomDrawer {...props} />
+        </ThemeProvider>
+      </BasketProvider>
     );
-    getPropsOfCallByComponent(spy, SwipeableDrawer).onOpen()
+    getPropsOfCallByComponent(spy, SwipeableDrawer).onOpen();
 
     // Assert
     expect((props.setOpen as SinonStub).calledWithExactly(true)).toBe(true);

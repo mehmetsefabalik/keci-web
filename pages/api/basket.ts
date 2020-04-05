@@ -30,6 +30,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         console.log('error: ', e);
         return res.status(500).json({ message: 'Network Error' });
       }
+      break;
     case 'GET':
       if (!req.cookies.access_token) {
         return res.status(401).json({ message: 'not a user' });
@@ -46,6 +47,24 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         console.log('error: ', e);
         return res.status(500).json({ message: 'Network Error' });
       }
-
+      break;
+    case 'PATCH':
+      if (!req.cookies.access_token) {
+        return res.status(401).json({ message: 'not a user' });
+      }
+      if (!req.body.product_id || !req.body.count) {
+        return res.status(400).json({ message: 'product_id or count is missing in body' });
+      }
+      try {
+        const headers = { "connection": "keep-alive" };
+        if (req.cookies.access_token) {
+          headers['Cookie'] = `access_token=${req.cookies.access_token}`;
+        }
+        const response = await axios.patch(`${api.mobile}/basket`, { product_id: req.body.product_id, count: req.body.count }, { headers });
+        return res.status(200).json(response.data);
+      } catch (e) {
+        console.log('error: ', e);
+        return res.status(500).json({ message: 'Network Error' });
+      }
   }
 };

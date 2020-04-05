@@ -1,14 +1,31 @@
 import React, { FunctionComponent, useContext, useEffect } from "react";
-import { SwipeableDrawer } from "@material-ui/core";
+import { SwipeableDrawer, Typography, Divider, createStyles, makeStyles, Theme, useTheme } from "@material-ui/core";
+import { Basket } from "../basket";
 
 export interface IProps {
   open: boolean;
   setOpen: (e: boolean) => void;
 }
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    sheet: {
+      "& .MuiPaper-root": {
+        borderRadius: "5px"
+      },
+    },
+    title: {
+      margin: "5px 10px",
+    }
+  }),
+);
+
 const BottomDrawer: FunctionComponent<IProps> = ({ open, setOpen }) => {
+  const theme = useTheme();
+  const classes = useStyles(theme);
   return <>
     <SwipeableDrawer
+      className={classes.sheet}
       id="bottom-drawer"
       anchor="bottom"
       open={open}
@@ -18,8 +35,8 @@ const BottomDrawer: FunctionComponent<IProps> = ({ open, setOpen }) => {
       disableDiscovery={true}
       disableSwipeToOpen={true}
     >
-      <div style={{ height: "50vh" }}>
-        Basket
+      <div style={{ maxHeight: "50vh", marginBottom: "70px" }}>
+        <Basket />
       </div>
     </SwipeableDrawer>
   </>;
