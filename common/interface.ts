@@ -1,5 +1,6 @@
 export interface IBasketContext {
   basket: IBasket;
+  updateBasket: () => void;
 }
 
 export interface IBasket {

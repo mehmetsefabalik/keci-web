@@ -1,5 +1,6 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useContext, useEffect } from "react";
 import { SwipeableDrawer } from "@material-ui/core";
+import BasketContext from "../../context/basket";
 
 export interface IProps {
   open: boolean;
@@ -7,6 +8,10 @@ export interface IProps {
 }
 
 const BottomDrawer: FunctionComponent<IProps> = ({ open, setOpen }) => {
+  const { basket } = useContext(BasketContext);
+  useEffect(() => {
+    console.log('basket has changed', basket);
+  }, [basket]);
   return <>
     <SwipeableDrawer
       id="bottom-drawer"
@@ -18,7 +23,7 @@ const BottomDrawer: FunctionComponent<IProps> = ({ open, setOpen }) => {
       disableDiscovery={true}
       disableSwipeToOpen={true}
     >
-      <div style={{height: "50vh"}}>
+      <div style={{ height: "50vh" }}>
         Hello
       </div>
     </SwipeableDrawer>

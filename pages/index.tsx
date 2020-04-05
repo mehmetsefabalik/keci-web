@@ -6,6 +6,7 @@ import { api } from "../common/constant";
 import { ContentCard } from "../components/content-card";
 import { BottomDrawer } from "../components/bottom-drawer";
 import { IBasket } from "../common/interface";
+import { BasketProvider } from "../context/basket";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,7 +30,7 @@ const Home = () => {
   const classes = useStyles();
   const [listings, setListings] = useState([]);
   const [contents, setContents] = useState([]);
-  const [basket, setBasket] = useState<IBasket | {}>({});
+  const [basket, setBasket] = useState<IBasket>();
   const [bottomDrawerIsOpen, setBottomDrawerIsOpen] = useState(false);
 
   const onBottomBarClick = () => {
@@ -77,32 +78,34 @@ const Home = () => {
     console.log("on buy click");
     e.stopPropagation();
   };
-  return <div className={classes.wrapper}>
-    <div className={classes.products}>
+  return <BasketProvider value={{ basket, updateBasket: () => { fetchBasket(); } }}>
+    <div className={classes.wrapper}>
+      <div className={classes.products}>
+        {
+          listings.map((listing, i) => (
+            <ProductCard
+              key={i.toString()}
+              id={listing.product._id.$oid}
+              name={listing.product.name}
+              price={listing.product.price}
+              oldPrice={listing.product.old_price}
+              imageUrl={listing.product.image_url}
+            />
+          ))
+        }
+      </div>
+      <div className={classes.contents} >
+        {
+          contents.map((content, i) => <ContentCard key={i.toString()} header={content.header} text={content.text} />)
+        }
+      </div>
       {
-        listings.map((listing, i) => (
-          <ProductCard
-            key={i.toString()}
-            id={listing.product._id.$oid}
-            name={listing.product.name}
-            price={listing.product.price}
-            oldPrice={listing.product.old_price}
-            imageUrl={listing.product.image_url}
-          />
-        ))
+        // TODO: add bottom drawer unit tests
       }
+      <BottomDrawer open={bottomDrawerIsOpen} setOpen={(isOpen) => setBottomDrawerIsOpen(isOpen)} />
+      <BottomBar onClick={onBottomBarClick} onBuyClick={onBuyClick} price={"15"} />
     </div>
-    <div className={classes.contents} >
-      {
-        contents.map((content, i) => <ContentCard key={i.toString()} header={content.header} text={content.text} />)
-      }
-    </div>
-    {
-      // TODO: add bottom drawer unit tests
-    }
-    <BottomDrawer open={bottomDrawerIsOpen} setOpen={(isOpen) => setBottomDrawerIsOpen(isOpen)} />
-    <BottomBar onClick={onBottomBarClick} onBuyClick={onBuyClick} price={"15"} />
-  </div>;
+  </BasketProvider>;
 };
 
 export default Home;

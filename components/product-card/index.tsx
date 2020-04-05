@@ -1,9 +1,10 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useContext } from "react";
 import { Paper, makeStyles, Theme, createStyles, useTheme } from "@material-ui/core";
 import { Button } from "../button";
 import { ProductImage } from "./product-image";
 import { ProductContent } from "./product-content";
 import { api } from "../../common/constant";
+import BasketContext from "../../context/basket";
 
 interface IProps {
   id: string;
@@ -32,6 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const ProductCard: FunctionComponent<IProps> = ({ name, price, oldPrice, imageUrl, id }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
+  const { updateBasket } = useContext(BasketContext);
 
   const onAddToBasketClick = async () => {
     const response = await fetch('/api/basket', {
@@ -44,6 +46,7 @@ const ProductCard: FunctionComponent<IProps> = ({ name, price, oldPrice, imageUr
     }
     );
     console.log("add to basket", response);
+    updateBasket();
   };
 
   return <Paper className={classes.paper} elevation={2}>
