@@ -122,7 +122,7 @@ const Home = () => {
         // TODO: add bottom drawer unit tests
       }
       <BottomDrawer open={bottomDrawerIsOpen} setOpen={(isOpen) => setBottomDrawerIsOpen(isOpen)} />
-      <BottomBar onClick={onBottomBarClick} onBuyClick={onBuyClick} price={"15"} />
+      <BottomBar onClick={onBottomBarClick} onBuyClick={onBuyClick} />
     </div>
   </BasketProvider>;
 };
