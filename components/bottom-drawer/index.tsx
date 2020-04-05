@@ -19,7 +19,7 @@ const BottomDrawer: FunctionComponent<IProps> = ({ open, setOpen }) => {
       disableSwipeToOpen={true}
     >
       <div style={{ height: "50vh" }}>
-        Hello
+        Basket
       </div>
     </SwipeableDrawer>
   </>;

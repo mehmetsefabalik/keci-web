@@ -41,14 +41,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const BottomBar: FunctionComponent<IProps> = ({ onClick, onBuyClick }) => {
   const classes = useStyles();
-  const { totalAmount, basket } = useContext(BasketContext);
-  const [itemCount, setItemCount] = useState(0);
-  useEffect(() => {
-    if (basket && Array.isArray(basket.content) && basket.content.length) {
-      const count = basket.content.reduce((acc, item) => acc + item.count, 0);
-      setItemCount(count);
-    }
-  }, [basket]);
+  const { totalAmount, itemCount } = useContext(BasketContext);
   return <>
     <Paper className={classes.bottomBarWrapper} onClick={onClick}>
       <Badge badgeContent={itemCount} color="primary">
