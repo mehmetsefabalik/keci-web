@@ -5,6 +5,7 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core";
 import { api } from "../common/constant";
 import { ContentCard } from "../components/content-card";
 import { BottomDrawer } from "../components/bottom-drawer";
+import { IBasket } from "../common/interface";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -28,6 +29,7 @@ const Home = () => {
   const classes = useStyles();
   const [listings, setListings] = useState([]);
   const [contents, setContents] = useState([]);
+  const [basket, setBasket] = useState<IBasket | {}>({})
   const [bottomDrawerIsOpen, setBottomDrawerIsOpen] = useState(false);
 
   const onBottomBarClick = () => {
@@ -55,9 +57,17 @@ const Home = () => {
     }
   };
 
+  const fetchBasket = async () => {
+    const basketResponse = await fetch(`${api.mobile}/basket`, { method: 'GET' });
+    if (basketResponse.ok) {
+      const basket = await basketResponse.json();
+    }
+  };
+
   useEffect(() => {
     fetchListings();
     fetchContents();
+    fetchBasket();
   }, []);
 
   const onBuyClick = e => {
