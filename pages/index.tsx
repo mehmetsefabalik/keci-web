@@ -77,7 +77,16 @@ const Home = () => {
   return <div className={classes.wrapper}>
     <div className={classes.products}>
       {
-        listings.map((listing, i) => <ProductCard key={i.toString()} name={listing.product.name} price={listing.product.price} oldPrice={listing.product.old_price} imageUrl={listing.product.image_url} />)
+        listings.map((listing, i) => (
+          <ProductCard
+            key={i.toString()}
+            id={listing.product._id.$oid}
+            name={listing.product.name}
+            price={listing.product.price}
+            oldPrice={listing.product.old_price}
+            imageUrl={listing.product.image_url}
+          />
+        ))
       }
     </div>
     <div className={classes.contents} >

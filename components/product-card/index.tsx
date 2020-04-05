@@ -5,6 +5,7 @@ import { ProductImage } from "./product-image";
 import { ProductContent } from "./product-content";
 
 interface IProps {
+  id: string;
   name: string;
   price: number;
   oldPrice: number;
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const ProductCard: FunctionComponent<IProps> = ({ name, price, oldPrice, imageUrl }) => {
+const ProductCard: FunctionComponent<IProps> = ({ name, price, oldPrice, imageUrl, id }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
