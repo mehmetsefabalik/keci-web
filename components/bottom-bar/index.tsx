@@ -34,7 +34,8 @@ const useStyles = makeStyles((theme: Theme) =>
       marginLeft: "20px"
     },
     price: {
-      fontSize: "18px"
+      fontSize: "18px",
+      marginLeft: "5px",
     }
   }),
 );

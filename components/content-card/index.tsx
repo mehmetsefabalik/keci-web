@@ -9,8 +9,8 @@ interface IProps {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     paper: {
-      width: "45vw",
-      height: "320px",
+      width: "46vw",
+      height: "325px",
       display: "flex",
       flexDirection: "column",
       padding: "5px 0"
