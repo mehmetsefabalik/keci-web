@@ -35,8 +35,7 @@ const Home = () => {
   const [bottomDrawerIsOpen, setBottomDrawerIsOpen] = useState(false);
 
   const onBottomBarClick = () => {
-    setBottomDrawerIsOpen(true);
-    console.log("on bottom bar click");
+    setBottomDrawerIsOpen(!bottomDrawerIsOpen);
   };
 
   const calculateTotalBasketAmount = () => {
