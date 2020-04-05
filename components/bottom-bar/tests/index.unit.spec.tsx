@@ -7,6 +7,7 @@ import { theme } from "../../../context/theme";
 import { BottomBar, IProps } from "../index";
 import { ShoppingCart } from "@material-ui/icons";
 import { getPropsOfCallByComponent, logArgsOfCalls, getArgsOfCallByComponent } from "../../../tests/utils";
+import { BasketProvider } from "../../../context/basket";
 
 const sandbox = sinon.createSandbox();
 const { random: { number }, lorem: { word, words } } = faker;
@@ -15,16 +16,16 @@ describe("BottomBar Unit Tests", () => {
   let props: IProps = {
     onClick: sandbox.stub(),
     onBuyClick: sandbox.stub(),
-    price: word(),
-  }
+  };
+  let totalAmount = number();
 
   beforeEach(() => {
+    totalAmount = number();
     props = {
       onClick: sandbox.stub(),
       onBuyClick: sandbox.stub(),
-      price: word(),
-    }
-  })
+    };
+  });
 
   afterEach(() => {
     sandbox.verifyAndRestore();
@@ -37,21 +38,22 @@ describe("BottomBar Unit Tests", () => {
 
     // Act
     const { getByText } = render(
-      <ThemeProvider theme={theme}>
-        <BottomBar {...props} />
-      </ThemeProvider>
+      <BasketProvider value={{ totalAmount }}>
+        <ThemeProvider theme={theme}>
+          <BottomBar {...props} />
+        </ThemeProvider>
+      </BasketProvider>
     );
 
     // Assert
     const spy = React.createElement as any;
     expect(spy.calledWith(Button)).toBe(true);
-    expect(getPropsOfCallByComponent(spy, Button).onClick).toBe(props.onBuyClick)
+    expect(getPropsOfCallByComponent(spy, Button).onClick).toBe(props.onBuyClick);
     expect(spy.calledWith(Paper)).toBe(true);
-    expect(getPropsOfCallByComponent(spy, Paper).onClick).toBe(props.onClick)
+    expect(getPropsOfCallByComponent(spy, Paper).onClick).toBe(props.onClick);
     expect(spy.calledWith(ShoppingCart)).toBe(true);
     expect(spy.calledWith(Typography)).toBe(true);
-    expect(getArgsOfCallByComponent(spy, Typography, 1)[2]).toBe(props.price);
-    expect(getByText(`${props.price}₺`)).toBeInTheDocument();
+    expect(getByText(`${totalAmount}₺`)).toBeInTheDocument();
   });
 
 });

@@ -1,14 +1,14 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useContext, useEffect } from "react";
 import { Typography } from "@material-ui/core";
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { ShoppingCart } from '@material-ui/icons';
 import { Button } from "../button";
+import BasketContext from "../../context/basket";
 
 export interface IProps {
   onClick: () => void;
   onBuyClick: (e?: any) => void;
-  price: string;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -39,12 +39,13 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const BottomBar: FunctionComponent<IProps> = ({onClick, onBuyClick, price}) => {
+const BottomBar: FunctionComponent<IProps> = ({onClick, onBuyClick}) => {
   const classes = useStyles();
+  const { totalAmount } = useContext(BasketContext);
   return <>
     <Paper className={classes.bottomBarWrapper} onClick={onClick}>
       <ShoppingCart color="primary" fontSize="large" className={classes.icon} />
-      <Typography>Toplam:</Typography>&nbsp;<Typography className={classes.price} color="primary">{price}₺</Typography>
+      <Typography>Toplam:</Typography>&nbsp;<Typography className={classes.price} color="primary">{totalAmount}₺</Typography>
       <Button name="SATIN AL" className={classes.buyButton} onClick={onBuyClick} />
     </Paper>
   </>;

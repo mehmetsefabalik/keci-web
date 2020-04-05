@@ -1,6 +1,7 @@
 export interface IBasketContext {
   basket: IBasket;
   updateBasket: () => void;
+  totalAmount: number;
 }
 
 export interface IBasket {

@@ -31,11 +31,24 @@ const Home = () => {
   const [listings, setListings] = useState([]);
   const [contents, setContents] = useState([]);
   const [basket, setBasket] = useState<IBasket>();
+  const [totalBasketAmount, setTotalBasketAmount] = useState(0);
   const [bottomDrawerIsOpen, setBottomDrawerIsOpen] = useState(false);
 
   const onBottomBarClick = () => {
     setBottomDrawerIsOpen(true);
     console.log("on bottom bar click");
+  };
+
+  const calculateTotalBasketAmount = () => {
+    if (basket && Array.isArray(basket.content) && basket.content.length) {
+      let total = 0;
+      const { product_info } = basket;
+      basket.content.forEach(item => {
+        const price = product_info.find(product => product._id.$oid === item.product_id.$oid).price;
+        total += price * item.count;
+      });
+      setTotalBasketAmount(total);
+    }
   };
 
   const fetchListings = async () => {
@@ -69,6 +82,12 @@ const Home = () => {
   };
 
   useEffect(() => {
+    if (basket && basket._id) {
+      calculateTotalBasketAmount();
+    }
+  }, [basket]);
+
+  useEffect(() => {
     fetchListings();
     fetchContents();
     fetchBasket();
@@ -78,7 +97,7 @@ const Home = () => {
     console.log("on buy click");
     e.stopPropagation();
   };
-  return <BasketProvider value={{ basket, updateBasket: () => { fetchBasket(); } }}>
+  return <BasketProvider value={{ basket, updateBasket: () => { fetchBasket(); }, totalAmount: totalBasketAmount }}>
     <div className={classes.wrapper}>
       <div className={classes.products}>
         {
