@@ -1,5 +1,5 @@
-import React, { FunctionComponent, useContext, useEffect } from "react";
-import { Typography } from "@material-ui/core";
+import React, { FunctionComponent, useContext, useEffect, useState } from "react";
+import { Typography, Badge } from "@material-ui/core";
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { ShoppingCart } from '@material-ui/icons';
@@ -39,13 +39,22 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const BottomBar: FunctionComponent<IProps> = ({onClick, onBuyClick}) => {
+const BottomBar: FunctionComponent<IProps> = ({ onClick, onBuyClick }) => {
   const classes = useStyles();
-  const { totalAmount } = useContext(BasketContext);
+  const { totalAmount, basket } = useContext(BasketContext);
+  const [itemCount, setItemCount] = useState(0);
+  useEffect(() => {
+    if (basket && Array.isArray(basket.content) && basket.content.length) {
+      const count = basket.content.reduce((acc, item) => acc + item.count, 0);
+      setItemCount(count);
+    }
+  }, [basket]);
   return <>
     <Paper className={classes.bottomBarWrapper} onClick={onClick}>
-      <ShoppingCart color="primary" fontSize="large" className={classes.icon} />
-      <Typography className={classes.price} color="primary">{totalAmount}₺</Typography>
+      <Badge badgeContent={itemCount} color="primary">
+        <ShoppingCart color="primary" fontSize="large" className={classes.icon} />
+      </Badge>
+      {totalAmount > 0 && <Typography className={classes.price} color="primary">{totalAmount}₺</Typography>}
       <Button name="SATIN AL" className={classes.buyButton} onClick={onBuyClick} />
     </Paper>
   </>;

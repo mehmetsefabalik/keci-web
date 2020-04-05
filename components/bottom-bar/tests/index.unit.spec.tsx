@@ -2,7 +2,7 @@ import React from "react";
 import sinon, { SinonSpy } from "sinon";
 import faker from "faker";
 import { render, cleanup, fireEvent } from "@testing-library/react";
-import { ThemeProvider, Button, Paper, Typography } from "@material-ui/core";
+import { ThemeProvider, Button, Paper, Typography, Badge } from "@material-ui/core";
 import { theme } from "../../../context/theme";
 import { BottomBar, IProps } from "../index";
 import { ShoppingCart } from "@material-ui/icons";
@@ -17,10 +17,10 @@ describe("BottomBar Unit Tests", () => {
     onClick: sandbox.stub(),
     onBuyClick: sandbox.stub(),
   };
-  let totalAmount = number();
+  let totalAmount = number({min: 1});
 
   beforeEach(() => {
-    totalAmount = number();
+    totalAmount = number({ min: 1 });
     props = {
       onClick: sandbox.stub(),
       onBuyClick: sandbox.stub(),
@@ -53,7 +53,25 @@ describe("BottomBar Unit Tests", () => {
     expect(getPropsOfCallByComponent(spy, Paper).onClick).toBe(props.onClick);
     expect(spy.calledWith(ShoppingCart)).toBe(true);
     expect(spy.calledWith(Typography)).toBe(true);
+    expect(spy.calledWith(Badge)).toBe(true);
     expect(getByText(`${totalAmount}₺`)).toBeInTheDocument();
+  });
+
+  it("should not show total amount if it is 0", () => {
+    // Arrange
+    totalAmount = 0;
+
+    // Act
+    const { queryByText } = render(
+      <BasketProvider value={{ totalAmount }}>
+        <ThemeProvider theme={theme}>
+          <BottomBar {...props} />
+        </ThemeProvider>
+      </BasketProvider>
+    );
+
+    // Assert
+    expect(queryByText(`${totalAmount}₺`)).toBeNull();
   });
 
 });
