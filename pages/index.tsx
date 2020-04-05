@@ -29,7 +29,7 @@ const Home = () => {
   const classes = useStyles();
   const [listings, setListings] = useState([]);
   const [contents, setContents] = useState([]);
-  const [basket, setBasket] = useState<IBasket | {}>({})
+  const [basket, setBasket] = useState<IBasket | {}>({});
   const [bottomDrawerIsOpen, setBottomDrawerIsOpen] = useState(false);
 
   const onBottomBarClick = () => {
@@ -58,9 +58,12 @@ const Home = () => {
   };
 
   const fetchBasket = async () => {
-    const basketResponse = await fetch(`${api.mobile}/basket`, { method: 'GET' });
+    const basketResponse = await fetch(`/api/basket`, { method: 'GET' });
     if (basketResponse.ok) {
       const basket = await basketResponse.json();
+      if (basket._id) {
+        setBasket(basket);
+      }
     }
   };
 

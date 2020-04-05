@@ -3,6 +3,7 @@ import { Paper, makeStyles, Theme, createStyles, useTheme } from "@material-ui/c
 import { Button } from "../button";
 import { ProductImage } from "./product-image";
 import { ProductContent } from "./product-content";
+import { api } from "../../common/constant";
 
 interface IProps {
   id: string;
@@ -32,8 +33,17 @@ const ProductCard: FunctionComponent<IProps> = ({ name, price, oldPrice, imageUr
   const theme = useTheme();
   const classes = useStyles(theme);
 
-  const onAddToBasketClick = () => {
-    console.log("add to basket");
+  const onAddToBasketClick = async () => {
+    const response = await fetch('/api/basket', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ product_id: id })
+    }
+    );
+    console.log("add to basket", response);
   };
 
   return <Paper className={classes.paper} elevation={2}>
