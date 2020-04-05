@@ -45,7 +45,6 @@ const ProductCard: FunctionComponent<IProps> = ({ name, price, oldPrice, imageUr
       body: JSON.stringify({ product_id: id })
     }
     );
-    console.log("add to basket", response);
     updateBasket();
   };
 
