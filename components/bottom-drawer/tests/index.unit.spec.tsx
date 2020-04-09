@@ -5,7 +5,7 @@ import { render, cleanup, fireEvent } from "@testing-library/react";
 import { ThemeProvider, SwipeableDrawer } from "@material-ui/core";
 import { theme } from "../../../context/theme";
 import { BottomDrawer } from "..";
-import { IProps } from "../index";
+import { Props } from "../index";
 import { getPropsOfCallByComponent } from "../../../tests/utils";
 import { basketFactory } from "../../../tests/factories";
 import { BasketProvider } from "../../../context/basket";
@@ -14,7 +14,7 @@ const sandbox = sinon.createSandbox();
 const { random: { number }, lorem: { word, words } } = faker;
 
 describe("BottomDrawer Unit Tests", () => {
-  let props: IProps = {
+  let props: Props = {
     open: false,
     setOpen: sandbox.stub()
   };

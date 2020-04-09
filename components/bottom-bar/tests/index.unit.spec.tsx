@@ -4,7 +4,7 @@ import faker from "faker";
 import { render, cleanup, fireEvent } from "@testing-library/react";
 import { ThemeProvider, Button, Paper, Typography, Badge } from "@material-ui/core";
 import { theme } from "../../../context/theme";
-import { BottomBar, IProps } from "../index";
+import { BottomBar, Props } from "../index";
 import { ShoppingCart } from "@material-ui/icons";
 import { getPropsOfCallByComponent } from "../../../tests/utils";
 import { basketFactory } from "../../../tests/factories";
@@ -14,7 +14,7 @@ const sandbox = sinon.createSandbox();
 const { random: { number }, lorem: { word, words } } = faker;
 
 describe("BottomBar Unit Tests", () => {
-  let props: IProps = {
+  let props: Props = {
     onClick: sandbox.stub(),
     onBuyClick: sandbox.stub(),
   };

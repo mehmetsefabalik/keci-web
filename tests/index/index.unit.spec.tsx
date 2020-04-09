@@ -1,18 +1,20 @@
 import React from "react";
-import sinon, { SinonStub } from "sinon";
-import faker from "faker";
-import { render, cleanup, fireEvent } from "@testing-library/react";
+import sinon from "sinon";
+import { render, cleanup } from "@testing-library/react";
 import Home from "../../pages/index";
 import { BottomBar } from "../../components/bottom-bar";
 import { getPropsOfCallByComponent } from "../utils";
-import { api } from "../../common/constant";
 
 const sandbox = sinon.createSandbox();
-const { random: { number }, lorem: { word, words } } = faker;
 
 describe("Home Page Unit Tests", () => {
+  const props = {
+    listings: [],
+  };
   beforeEach(() => {
-    window.fetch = sandbox.stub().resolves({ ok: true, json: sandbox.stub().resolves([]) });
+    window.fetch = sandbox
+      .stub()
+      .resolves({ ok: true, json: sandbox.stub().resolves([]) });
   });
   afterEach(() => {
     sandbox.verifyAndRestore();
@@ -24,7 +26,7 @@ describe("Home Page Unit Tests", () => {
     sandbox.spy(React, "createElement");
 
     // Act
-    const { container, debug } = render(<Home />);
+    render(<Home {...props} />);
 
     // Assert
     const spy = React.createElement as any;
@@ -37,24 +39,13 @@ describe("Home Page Unit Tests", () => {
     const eventStub = sandbox.stub();
 
     // Act
-    const { container, debug } = render(<Home />);
+    render(<Home {...props} />);
     const spy = React.createElement as any;
-    getPropsOfCallByComponent(spy, BottomBar).onBuyClick({ stopPropagation: eventStub });
+    getPropsOfCallByComponent(spy, BottomBar).onBuyClick({
+      stopPropagation: eventStub,
+    });
 
     // Assert
     expect(eventStub.called).toBe(true);
-
-  });
-
-  it("should fetch listings and contents", () => {
-    // Arrange
-    sandbox.spy(React, "createElement");
-
-    // Act
-    render(<Home />);
-
-    // Assert
-    expect((window.fetch as SinonStub).calledWithExactly(`${api.mobile}/listings`, {method: 'GET'}))
-    expect((window.fetch as SinonStub).calledWithExactly(`${api.mobile}/contents`, {method: 'GET'}))
   });
 });
