@@ -8,6 +8,7 @@ interface Props {
   color?: "primary" | "secondary";
   fullWidth?: boolean;
   variant?: "outlined" | "contained";
+  type?: "button" | "submit" | "reset";
 }
 
 const Button: FunctionComponent<Props> = ({
@@ -17,6 +18,7 @@ const Button: FunctionComponent<Props> = ({
   onClick,
   fullWidth = false,
   variant = "contained",
+  type = "button",
 }) => {
   return (
     <>
@@ -26,6 +28,7 @@ const Button: FunctionComponent<Props> = ({
         color={color}
         variant={variant}
         fullWidth={fullWidth}
+        type={type}
       >
         {name}
       </MuiButton>
