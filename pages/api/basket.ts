@@ -37,7 +37,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             "set-cookie",
             `${
               response.headers["set-cookie"][0]
-            }; path=/; expires=${getExpireDate()}; HttpOnly;`
+            }; path=/; expires=${getExpireDate()}; HttpOnly; Secure=Lax`
           );
         }
         return res.status(200).json(response.data);
@@ -51,10 +51,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       }
 
       try {
-        const headers: any = { connection: "keep-alive" };
-        if (req.cookies.access_token) {
-          headers.Cookie = `access_token=${req.cookies.access_token}`;
-        }
+        const headers: any = {
+          connection: "keep-alive",
+          Cookie: `access_token=${req.cookies.access_token}`,
+        };
         const response = await axios.get(`${api.mobile}/basket`, { headers });
         return res.status(200).json(response.data);
       } catch (e) {
@@ -71,10 +71,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           .json({ message: "product_id or count is missing in body" });
       }
       try {
-        const headers: any = { connection: "keep-alive" };
-        if (req.cookies.access_token) {
-          headers.Cookie = `access_token=${req.cookies.access_token}`;
-        }
+        const headers: any = {
+          connection: "keep-alive",
+          Cookie: `access_token=${req.cookies.access_token}`,
+        };
         const response = await axios.patch(
           `${api.mobile}/basket`,
           { product_id: req.body.product_id, count: req.body.count },
