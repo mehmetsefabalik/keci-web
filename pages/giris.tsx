@@ -1,17 +1,7 @@
 import React from "react";
-import {
-  Paper,
-  makeStyles,
-  Tabs,
-  Tab,
-  Grid,
-  FormControl,
-  InputLabel,
-  OutlinedInput,
-  InputAdornment,
-  IconButton,
-} from "@material-ui/core";
-import { Visibility, VisibilityOff } from "@material-ui/icons";
+import { Paper, makeStyles, Tabs, Tab, Grid } from "@material-ui/core";
+import { Login } from "../components/login";
+import { Signup } from "../components/signup";
 
 const useStyles = makeStyles({
   root: {
@@ -23,16 +13,17 @@ const useStyles = makeStyles({
   form: {
     marginTop: "50px",
   },
+  element: {
+    margin: "5px 0",
+  },
 });
 
 const Giris = () => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-  const [password, setPassword] = React.useState("");
-  const [showPassword, setShowPassword] = React.useState(false);
+  const [tab, setTab] = React.useState(0);
 
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    setValue(newValue);
+    setTab(newValue);
   };
   return (
     <>
@@ -40,7 +31,7 @@ const Giris = () => {
         <Grid item xs={12} sm={6}>
           <Paper className={classes.root}>
             <Tabs
-              value={value}
+              value={tab}
               onChange={handleTabChange}
               indicatorColor="primary"
               textColor="primary"
@@ -59,31 +50,8 @@ const Giris = () => {
         justify="center"
         className={classes.form}
       >
-        <Grid item xs={10} sm={6}>
-          <FormControl fullWidth variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password">
-              Password
-            </InputLabel>
-            <OutlinedInput
-              id="outlined-adornment-password"
-              type={showPassword ? "text" : "password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={() => setShowPassword(!showPassword)}
-                    onMouseDown={(e) => e.preventDefault()}
-                    edge="end"
-                  >
-                    {showPassword ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
-              }
-              labelWidth={70}
-            />
-          </FormControl>
+        <Grid item xs={10} sm={3}>
+          {tab === 0 ? <Login /> : <Signup />}
         </Grid>
       </Grid>
     </>
