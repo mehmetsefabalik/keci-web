@@ -109,7 +109,7 @@ const Home = ({ listings }) => {
           <Grid container spacing={1} alignItems="center" justify="center">
             {listings.map((listing, i) =>
               listing.type === "product" ? (
-                <Grid item>
+                <Grid item xs={6} md={3} lg={2}>
                   <ProductCard
                     key={i.toString()}
                     id={listing.product._id.$oid}
@@ -120,7 +120,7 @@ const Home = ({ listings }) => {
                   />
                 </Grid>
               ) : (
-                <Grid item>
+                <Grid item xs={6} md={3} lg={2}>
                   <ContentCard
                     key={i.toString()}
                     header={listing.header}

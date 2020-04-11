@@ -22,7 +22,6 @@ interface Props {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     paper: {
-      width: "46vw",
       height: "325px",
       display: "flex",
       flexDirection: "column",
