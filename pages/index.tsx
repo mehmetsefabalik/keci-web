@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Router from "next/router";
 import axios from "axios";
 import { BottomBar } from "../components/bottom-bar";
 import { ProductCard } from "../components/product-card";
@@ -92,6 +93,7 @@ const Home = ({ listings }) => {
 
   const onBuyClick = (e) => {
     console.log("on buy click");
+    Router.push("/giris");
     e.stopPropagation();
   };
   return (
@@ -112,9 +114,8 @@ const Home = ({ listings }) => {
             <Grid container spacing={1} alignItems="center" justify="center">
               {listings.map((listing, i) =>
                 listing.type === "product" ? (
-                  <Grid item xs={6} md={3} lg={2}>
+                  <Grid key={i.toString()} item xs={6} md={3} lg={2}>
                     <ProductCard
-                      key={i.toString()}
                       id={listing.product._id.$oid}
                       name={listing.product.name}
                       price={listing.product.price}
@@ -123,12 +124,8 @@ const Home = ({ listings }) => {
                     />
                   </Grid>
                 ) : (
-                  <Grid item xs={6} md={3} lg={2}>
-                    <ContentCard
-                      key={i.toString()}
-                      header={listing.header}
-                      text={listing.text}
-                    />
+                  <Grid key={i.toString()} item xs={6} md={3} lg={2}>
+                    <ContentCard header={listing.header} text={listing.text} />
                   </Grid>
                 )
               )}

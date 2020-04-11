@@ -1,4 +1,5 @@
 import React from "react";
+import Router from "next/router";
 import sinon from "sinon";
 import { render, cleanup } from "@testing-library/react";
 import Home from "../../pages/index";
@@ -12,6 +13,7 @@ describe("Home Page Unit Tests", () => {
     listings: [],
   };
   beforeEach(() => {
+    sandbox.stub(Router, "push");
     window.fetch = sandbox
       .stub()
       .resolves({ ok: true, json: sandbox.stub().resolves([]) });
