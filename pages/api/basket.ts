@@ -37,7 +37,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             "set-cookie",
             `${
               response.headers["set-cookie"][0]
-            }; path=/; expires=${getExpireDate()}; HttpOnly; Secure=Lax`
+            }; path=/; expires=${getExpireDate()}; HttpOnly;`
           );
         }
         return res.status(200).json(response.data);
