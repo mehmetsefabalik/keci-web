@@ -9,6 +9,7 @@ import { BottomDrawer } from "../components/bottom-drawer";
 import { IBasket } from "../common/interface";
 import { BasketProvider } from "../context/basket";
 import { GetServerSideProps } from "next";
+import { Header } from "../components/header";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -94,53 +95,56 @@ const Home = ({ listings }) => {
     e.stopPropagation();
   };
   return (
-    <BasketProvider
-      value={{
-        basket,
-        updateBasket: () => {
-          fetchBasket();
-        },
-        totalAmount: totalBasketAmount,
-        itemCount: basketItemCount,
-      }}
-    >
-      <div className={classes.wrapper}>
-        <div className={classes.products}>
-          <Grid container spacing={1} alignItems="center" justify="center">
-            {listings.map((listing, i) =>
-              listing.type === "product" ? (
-                <Grid item xs={6} md={3} lg={2}>
-                  <ProductCard
-                    key={i.toString()}
-                    id={listing.product._id.$oid}
-                    name={listing.product.name}
-                    price={listing.product.price}
-                    oldPrice={listing.product.old_price}
-                    imageUrl={listing.product.image_url}
-                  />
-                </Grid>
-              ) : (
-                <Grid item xs={6} md={3} lg={2}>
-                  <ContentCard
-                    key={i.toString()}
-                    header={listing.header}
-                    text={listing.text}
-                  />
-                </Grid>
-              )
-            )}
-          </Grid>
+    <>
+      <Header />
+      <BasketProvider
+        value={{
+          basket,
+          updateBasket: () => {
+            fetchBasket();
+          },
+          totalAmount: totalBasketAmount,
+          itemCount: basketItemCount,
+        }}
+      >
+        <div className={classes.wrapper}>
+          <div className={classes.products}>
+            <Grid container spacing={1} alignItems="center" justify="center">
+              {listings.map((listing, i) =>
+                listing.type === "product" ? (
+                  <Grid item xs={6} md={3} lg={2}>
+                    <ProductCard
+                      key={i.toString()}
+                      id={listing.product._id.$oid}
+                      name={listing.product.name}
+                      price={listing.product.price}
+                      oldPrice={listing.product.old_price}
+                      imageUrl={listing.product.image_url}
+                    />
+                  </Grid>
+                ) : (
+                  <Grid item xs={6} md={3} lg={2}>
+                    <ContentCard
+                      key={i.toString()}
+                      header={listing.header}
+                      text={listing.text}
+                    />
+                  </Grid>
+                )
+              )}
+            </Grid>
+          </div>
+          {
+            // TODO: add bottom drawer unit tests
+          }
+          <BottomDrawer
+            open={bottomDrawerIsOpen}
+            setOpen={(isOpen) => setBottomDrawerIsOpen(isOpen)}
+          />
+          <BottomBar onClick={onBottomBarClick} onBuyClick={onBuyClick} />
         </div>
-        {
-          // TODO: add bottom drawer unit tests
-        }
-        <BottomDrawer
-          open={bottomDrawerIsOpen}
-          setOpen={(isOpen) => setBottomDrawerIsOpen(isOpen)}
-        />
-        <BottomBar onClick={onBottomBarClick} onBuyClick={onBuyClick} />
-      </div>
-    </BasketProvider>
+      </BasketProvider>
+    </>
   );
 };
 
