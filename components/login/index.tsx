@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from "react";
+import Router from "next/router";
 import { makeStyles } from "@material-ui/core";
 import { Button } from "../button";
 import { PhoneInput } from "../phone-input";
@@ -23,9 +24,20 @@ const Login: FunctionComponent<{}> = () => {
   const classes = useStyles();
   const [phone, setPhone] = React.useState("05");
   const [password, setPassword] = React.useState("");
-  const onLogin = (e) => {
+  const onLogin = async (e) => {
     e.preventDefault();
     console.log("on login", phone, password);
+    const response = await fetch("/api/login", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ phone, password }),
+    });
+    if (response.ok) {
+      Router.push(new URLSearchParams(window.location.search).get("cb") || "/");
+    }
   };
   return (
     <form onSubmit={onLogin}>

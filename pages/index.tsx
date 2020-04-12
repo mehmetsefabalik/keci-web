@@ -92,8 +92,7 @@ const Home = ({ listings }) => {
   }, []);
 
   const onBuyClick = (e) => {
-    console.log("on buy click");
-    Router.push("/giris");
+    Router.push("/odeme");
     e.stopPropagation();
   };
   return (

@@ -1,12 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 import { api } from "../../common/constant";
-
-const getExpireDate = () => {
-  const date = new Date();
-  date.setTime(date.getTime() + 700 * 24 * 60 * 60 * 1000);
-  return date.toUTCString();
-};
+import { getExpireDate } from "../../common/util";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
