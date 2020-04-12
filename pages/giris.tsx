@@ -1,5 +1,5 @@
 import React from "react";
-import { Paper, makeStyles, Tabs, Tab, Grid } from "@material-ui/core";
+import { Paper, makeStyles, Tabs, Tab, Grid, Link } from "@material-ui/core";
 import { Login } from "../components/login";
 import { Signup } from "../components/signup";
 
@@ -52,6 +52,9 @@ const Giris = () => {
       >
         <Grid item xs={10} sm={3}>
           {tab === 0 ? <Login /> : <Signup />}
+          <Link style={{ marginTop: "10px" }} href="/odeme?allow-anon=true">
+            Kayıt Olmadan Devam Et
+          </Link>
         </Grid>
       </Grid>
     </>
