@@ -1,33 +1,14 @@
 import React, { FunctionComponent, useContext } from "react";
 import BasketContext from "../../context/basket";
 import { Item } from "./item";
-import {
-  makeStyles,
-  Theme,
-  createStyles,
-  useTheme,
-  List,
-  ListSubheader,
-} from "@material-ui/core";
+import { List, ListSubheader } from "@material-ui/core";
 
-interface Props {}
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    wrapper: {
-      margin: "5px 10px",
-    },
-  })
-);
-
-const Basket: FunctionComponent<Props> = () => {
-  const theme = useTheme();
-  const classes = useStyles(theme);
+const Basket: FunctionComponent<{}> = () => {
   const { basket, updateBasket } = useContext(BasketContext);
   const getItemName = (id: string) =>
     basket.product_info.find((product) => product._id.$oid === id).name;
   const updateItem = async (id: string, count: number) => {
-    const response = await fetch("/api/basket", {
+    await fetch("/api/basket", {
       method: "PATCH",
       headers: {
         Accept: "application/json",
@@ -47,7 +28,8 @@ const Basket: FunctionComponent<Props> = () => {
         </ListSubheader>
       }
     >
-      {Array.isArray(basket.content) &&
+      {basket &&
+        Array.isArray(basket.content) &&
         basket.content.map((item, i) => (
           <Item
             key={i.toString()}

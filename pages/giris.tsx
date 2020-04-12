@@ -52,7 +52,7 @@ const Giris = () => {
       >
         <Grid item xs={10} sm={3}>
           {tab === 0 ? <Login /> : <Signup />}
-          <Link style={{ marginTop: "10px" }} href="/odeme?allow-anon=true">
+          <Link style={{ marginTop: "10px" }} href="/odeme?allow-guest=true">
             Kayıt Olmadan Devam Et
           </Link>
         </Grid>
