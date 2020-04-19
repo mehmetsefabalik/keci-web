@@ -22,6 +22,34 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         console.log("error: ", e);
         return res.status(500).json({ message: "Network Error" });
       }
+    case "PATCH":
+      try {
+        if (!req.body.addressIdToEdit) {
+          return res
+            .status(400)
+            .json({ message: "addressIdToEdit is required in request body" });
+        }
+        const headers: any = { connection: "keep-alive" };
+        if (req.cookies.access_token) {
+          headers.Cookie = `access_token=${req.cookies.access_token}`;
+        }
+        const response = await axios.patch(
+          `${api.mobile}/addresses/${req.body.addressIdToEdit}`,
+          {
+            name: req.body.name,
+            surname: req.body.surname,
+            title: req.body.title,
+            text: req.body.text,
+            district_id: 0,
+            neighborhood_id: 0,
+          },
+          { headers, withCredentials: true }
+        );
+        return res.status(200).json(response.data);
+      } catch (e) {
+        console.log("error: ", e);
+        return res.status(500).json({ message: "Network Error" });
+      }
     case "GET":
       if (!req.cookies.access_token) {
         return res.status(401).json({ message: "not a user" });

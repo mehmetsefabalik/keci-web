@@ -8,6 +8,7 @@ import { Address } from "../common/interface";
 import Router from "next/router";
 import { WithNotification } from "../hocs/with-notification";
 import { Header } from "../components/header";
+import { EditAddress } from "../components/edit-address";
 
 const useStyles = makeStyles({
   fab: {
@@ -21,6 +22,8 @@ const Adres = () => {
   const classes = useStyles();
   const [addresses, setAddresses] = useState<Address[]>([]);
   const [addAddressFormOpen, setAddAddressFormOpen] = useState(false);
+  const [editAddressFormOpen, setEditAddressFormOpen] = useState(false);
+  const [addressIdToEdit, setAddressIdToEdit] = useState("");
   const fetchAddresses = async () => {
     const response = await fetch("/api/addresses", { method: "GET" });
     if (response.ok) {
@@ -34,7 +37,8 @@ const Adres = () => {
   };
 
   const edit = (id: string) => {
-    console.log("on edit click", id);
+    setAddressIdToEdit(id);
+    setEditAddressFormOpen(true);
   };
 
   useEffect(() => {
@@ -56,6 +60,11 @@ const Adres = () => {
           <AddAddress
             open={addAddressFormOpen}
             setOpen={setAddAddressFormOpen}
+          />
+          <EditAddress
+            open={editAddressFormOpen}
+            setOpen={setEditAddressFormOpen}
+            addressIdToEdit={addressIdToEdit}
           />
           <Fab
             className={classes.fab}
