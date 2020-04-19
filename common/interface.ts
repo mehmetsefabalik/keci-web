@@ -32,6 +32,8 @@ export interface ObjectId {
 
 export interface AddressContext {
   addresses: Address[];
+  update: Function;
+  edit: (id: string) => void;
 }
 
 export interface Address {

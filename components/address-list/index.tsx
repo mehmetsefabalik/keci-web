@@ -1,16 +1,31 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useContext } from "react";
+import AddressContext from "../../context/address";
+import { Item } from "./item";
+import { Grid, makeStyles } from "@material-ui/core";
 
-interface Props {
-  addresses: { name: string }[];
-}
+const useStyles = makeStyles({
+  root: {
+    margin: "10px",
+  },
+});
 
-const AddressList: FunctionComponent<Props> = ({ addresses }) => {
+const AddressList: FunctionComponent = () => {
+  const classes = useStyles();
+  const { addresses } = useContext(AddressContext);
   return (
-    <>
+    <Grid
+      container
+      alignItems="center"
+      justify="center"
+      spacing={2}
+      className={classes.root}
+    >
       {addresses.map((address, i) => (
-        <div key={i.toString()}>{address.name}</div>
+        <Grid key={i.toString()} item xs={12} sm={4}>
+          <Item key={i.toString()} address={address}></Item>
+        </Grid>
       ))}
-    </>
+    </Grid>
   );
 };
 export { AddressList };
