@@ -7,7 +7,7 @@ import { makeStyles, Theme, createStyles, Grid } from "@material-ui/core";
 import { api } from "../common/constant";
 import { ContentCard } from "../components/content-card";
 import { BottomDrawer } from "../components/bottom-drawer";
-import { IBasket } from "../common/interface";
+import { Basket } from "../common/interface";
 import { BasketProvider } from "../context/basket";
 import { GetServerSideProps } from "next";
 import { Header } from "../components/header";
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Home = ({ listings }) => {
   const classes = useStyles();
-  const [basket, setBasket] = useState<IBasket>();
+  const [basket, setBasket] = useState<Basket>();
   const [totalBasketAmount, setTotalBasketAmount] = useState(0);
   const [basketItemCount, setBasketItemCount] = useState(0);
   const [bottomDrawerIsOpen, setBottomDrawerIsOpen] = useState(false);

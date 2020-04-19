@@ -1,31 +1,31 @@
-export interface IBasketContext {
-  basket: IBasket;
+export interface BasketContext {
+  basket: Basket;
   updateBasket: () => void;
   totalAmount: number;
   itemCount: number;
 }
 
-export interface IBasket {
-  _id: IObjectId;
-  user_id: IObjectId;
-  content: IBasketItem[];
-  product_info: IProduct[];
+export interface Basket {
+  _id: ObjectId;
+  user_id: ObjectId;
+  content: BasketItem[];
+  product_info: Product[];
 }
 
-export interface IProduct {
-  _id: IObjectId;
-  product_unit_id: IObjectId;
+export interface Product {
+  _id: ObjectId;
+  product_unit_id: ObjectId;
   name: string;
   size: string;
   price: number;
   old_price: number;
 }
 
-export interface IBasketItem {
-  product_id: IObjectId;
+export interface BasketItem {
+  product_id: ObjectId;
   count: number;
 }
 
-export interface IObjectId {
+export interface ObjectId {
   $oid: string;
 }
