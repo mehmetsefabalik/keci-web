@@ -3,7 +3,7 @@ import MuiButton from "@material-ui/core/Button";
 
 interface Props {
   name: string;
-  onClick: () => void;
+  onClick?: () => void;
   className?: string;
   color?: "primary" | "secondary";
   fullWidth?: boolean;

@@ -6,9 +6,9 @@ import { getExpireDate } from "../../common/util";
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
     case "POST":
-      console.log('body', typeof req.body)
-      console.log('body', req.body.phone)
-      console.log('body', req.body.password)
+      console.log("body", typeof req.body);
+      console.log("body", req.body.phone);
+      console.log("body", req.body.password);
       const { phone, password } = req.body;
       if (!phone || !password) {
         return res

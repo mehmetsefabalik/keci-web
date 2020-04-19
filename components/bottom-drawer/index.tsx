@@ -1,14 +1,11 @@
-import React, { FunctionComponent, useContext, useEffect } from "react";
+import React, { FunctionComponent } from "react";
 import {
   SwipeableDrawer,
-  Typography,
-  Divider,
   createStyles,
   makeStyles,
   Theme,
   useTheme,
 } from "@material-ui/core";
-import { Basket } from "../basket";
 
 export interface Props {
   open: boolean;
@@ -28,7 +25,11 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const BottomDrawer: FunctionComponent<Props> = ({ open, setOpen }) => {
+const BottomDrawer: FunctionComponent<Props> = ({
+  open,
+  setOpen,
+  children,
+}) => {
   const theme = useTheme();
   const classes = useStyles(theme);
   return (
@@ -44,9 +45,7 @@ const BottomDrawer: FunctionComponent<Props> = ({ open, setOpen }) => {
         disableDiscovery={true}
         disableSwipeToOpen={true}
       >
-        <div style={{ maxHeight: "50vh", marginBottom: "70px" }}>
-          <Basket />
-        </div>
+        {children}
       </SwipeableDrawer>
     </>
   );

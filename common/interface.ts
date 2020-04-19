@@ -29,3 +29,15 @@ export interface BasketItem {
 export interface ObjectId {
   $oid: string;
 }
+
+export interface AddressContext {
+  addresses: Address[];
+}
+
+export interface Address {
+  _id: ObjectId;
+  name: string;
+  surname: string;
+  title: string;
+  text: string;
+}

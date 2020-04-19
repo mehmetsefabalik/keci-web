@@ -7,7 +7,8 @@ import { makeStyles, Theme, createStyles, Grid } from "@material-ui/core";
 import { api } from "../common/constant";
 import { ContentCard } from "../components/content-card";
 import { BottomDrawer } from "../components/bottom-drawer";
-import { Basket } from "../common/interface";
+import { Basket } from "../components/basket";
+import { Basket as IBasket } from "../common/interface";
 import { BasketProvider } from "../context/basket";
 import { GetServerSideProps } from "next";
 import { Header } from "../components/header";
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Home = ({ listings }) => {
   const classes = useStyles();
-  const [basket, setBasket] = useState<Basket>();
+  const [basket, setBasket] = useState<IBasket>();
   const [totalBasketAmount, setTotalBasketAmount] = useState(0);
   const [basketItemCount, setBasketItemCount] = useState(0);
   const [bottomDrawerIsOpen, setBottomDrawerIsOpen] = useState(false);
@@ -130,13 +131,14 @@ const Home = ({ listings }) => {
               )}
             </Grid>
           </div>
-          {
-            // TODO: add bottom drawer unit tests
-          }
           <BottomDrawer
             open={bottomDrawerIsOpen}
-            setOpen={(isOpen) => setBottomDrawerIsOpen(isOpen)}
-          />
+            setOpen={setBottomDrawerIsOpen}
+          >
+            <div style={{ maxHeight: "50vh", marginBottom: "70px" }}>
+              <Basket />
+            </div>
+          </BottomDrawer>
           <BottomBar onClick={onBottomBarClick} onBuyClick={onBuyClick} />
         </div>
       </BasketProvider>

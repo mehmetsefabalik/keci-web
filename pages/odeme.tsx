@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
-import { makeStyles, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import Router from "next/router";
-
-const useStyles = makeStyles({});
 
 const Odeme = () => {
   const fetchMe = async () => {
