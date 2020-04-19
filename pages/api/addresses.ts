@@ -22,5 +22,23 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         console.log("error: ", e);
         return res.status(500).json({ message: "Network Error" });
       }
+    case "GET":
+      if (!req.cookies.access_token) {
+        return res.status(401).json({ message: "not a user" });
+      }
+
+      try {
+        const headers: any = {
+          connection: "keep-alive",
+          Cookie: `access_token=${req.cookies.access_token}`,
+        };
+        const response = await axios.get(`${api.mobile}/addresses`, {
+          headers,
+        });
+        return res.status(200).json(response.data);
+      } catch (e) {
+        console.log("error: ", e);
+        return res.status(e.response.status).json({ message: e.resonse.body });
+      }
   }
 };

@@ -10,8 +10,9 @@
     "lint": "eslint --fix ./pages/**/*.{js,ts,tsx} ./components/**/*.tsx ./context/*.ts ./common/*.ts"
   },
   "dependencies": {
-    "@material-ui/core": "^4.9.5",
+    "@material-ui/core": "^4.9.11",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.50",
     "axios": "^0.19.2",
     "next": "^9.3.4",
     "next-pwa": "^2.2.0",

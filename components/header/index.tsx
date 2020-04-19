@@ -5,7 +5,7 @@ import { Menu } from "@material-ui/icons";
 const Header: FunctionComponent = () => {
   return (
     <>
-      <AppBar position="sticky" color="transparent">
+      <AppBar position="static" color="default">
         <Toolbar>
           <IconButton edge="start" color="inherit" aria-label="menu">
             <Menu />

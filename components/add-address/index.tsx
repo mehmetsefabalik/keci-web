@@ -1,7 +1,9 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent, useState, useContext } from "react";
 import { BottomDrawer } from "../bottom-drawer";
 import { AddressForm } from "../address-form";
 import { makeStyles } from "@material-ui/core";
+import AddressContext from "../../context/address";
+import NotificationContext from "../../context/notification";
 
 interface Props {
   open: boolean;
@@ -15,13 +17,15 @@ const useStyles = makeStyles({
 });
 
 const AddAddress: FunctionComponent<Props> = ({ open, setOpen }) => {
+  const { update } = useContext(AddressContext);
+  const notif = useContext(NotificationContext);
   const classes = useStyles();
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const onSubmit = async () => {
-    await fetch("/api/addresses", {
+    const response = await fetch("/api/addresses", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -29,6 +33,16 @@ const AddAddress: FunctionComponent<Props> = ({ open, setOpen }) => {
       },
       body: JSON.stringify({ name, surname, title, text }),
     });
+
+    if (response.ok) {
+      notif.setSeverity("success");
+      notif.setMessage("Adres Eklendi");
+      notif.setOpen(true);
+      update();
+      setOpen(false);
+    } else {
+      console.log("error");
+    }
   };
   return (
     <BottomDrawer open={open} setOpen={setOpen}>
