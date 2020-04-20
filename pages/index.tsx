@@ -60,12 +60,8 @@ const Home = ({ listings }) => {
 
   const calculateBasketItemCount = () => {
     if (basket && Array.isArray(basket.content) && basket.content.length) {
-      const tempItemCount = basketItemCount;
       const count = basket.content.reduce((acc, item) => acc + item.count, 0);
       setBasketItemCount(count);
-      if (tempItemCount === 0 && count === 1) {
-        setBottomDrawerIsOpen(true);
-      }
     } else {
       setBasketItemCount(0);
     }
@@ -104,6 +100,7 @@ const Home = ({ listings }) => {
           basket,
           updateBasket: () => {
             fetchBasket();
+            setBottomDrawerIsOpen(true);
           },
           totalAmount: totalBasketAmount,
           itemCount: basketItemCount,

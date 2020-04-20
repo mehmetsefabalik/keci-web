@@ -17,7 +17,7 @@ const AddressList: FunctionComponent = () => {
       container
       alignItems="center"
       justify="center"
-      spacing={2}
+      spacing={1}
       className={classes.root}
     >
       {addresses.map((address, i) => (

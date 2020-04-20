@@ -7,6 +7,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     case "POST":
       const { name, surname, title, text } = req.body;
 
+      if (!name || !surname || !title || !text) {
+        return res.status(400).send();
+      }
+
       try {
         const headers: any = { connection: "keep-alive" };
         if (req.cookies.access_token) {
