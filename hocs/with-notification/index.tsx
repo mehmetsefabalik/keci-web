@@ -12,6 +12,7 @@ const WithNotification: FunctionComponent = ({ children }) => {
   return (
     <NotificationProvider
       value={{
+        open: notificationOpen,
         setOpen: setNotificationOpen,
         setMessage: setNotificationMessage,
         setSeverity: setNotificationSeverity,
