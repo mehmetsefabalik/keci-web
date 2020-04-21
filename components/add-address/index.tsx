@@ -1,9 +1,16 @@
-import React, { FunctionComponent, useState, useContext } from "react";
+import React, {
+  FunctionComponent,
+  useState,
+  useContext,
+  useEffect,
+} from "react";
+import Router from "next/router";
 import { BottomDrawer } from "../bottom-drawer";
 import { AddressForm } from "../address-form";
 import { makeStyles } from "@material-ui/core";
 import AddressContext from "../../context/address";
 import NotificationContext from "../../context/notification";
+import { warning } from "../../common/util";
 
 interface Props {
   open: boolean;
@@ -17,7 +24,7 @@ const useStyles = makeStyles({
 });
 
 const AddAddress: FunctionComponent<Props> = ({ open, setOpen }) => {
-  const { update } = useContext(AddressContext);
+  const { update, addresses } = useContext(AddressContext);
   const notif = useContext(NotificationContext);
   const classes = useStyles();
   const [name, setName] = useState("");
@@ -40,10 +47,22 @@ const AddAddress: FunctionComponent<Props> = ({ open, setOpen }) => {
       notif.setOpen(true);
       update();
       setOpen(false);
+      const query = new URLSearchParams(window.location.search);
+      const callback = query.get("cb");
+      if (callback) {
+        const cbQuery = query.get("cb-query") || "";
+        Router.push(callback + cbQuery);
+      }
     } else {
       console.log("error");
     }
   };
+  useEffect(() => {
+    if (Array.isArray(addresses) && !addresses.length) {
+      warning.call(notif, "Lütfen Adres Ekleyin");
+      setOpen(true);
+    }
+  }, [addresses]);
   return (
     <BottomDrawer open={open} setOpen={setOpen}>
       <AddressForm

@@ -8,10 +8,32 @@ const WithAddress: FunctionComponent = ({ children }) => {
   const [idToEdit, setIdToEdit] = useState("");
   const fetchAddresses = async () => {
     const response = await fetch("/api/addresses", { method: "GET" });
+    let responseBody;
+    try {
+      responseBody = await response.json();
+    } catch (e) {
+      console.error(e);
+      responseBody = [];
+    }
+
+    if (
+      Array.isArray(responseBody) &&
+      !responseBody.length &&
+      window.location.pathname !== "/adres"
+    ) {
+      const cbQuery = window.location.search
+        ? `&cb-query=${window.location.search}`
+        : "";
+      return Router.push(`/adres?cb=${window.location.pathname}${cbQuery}`);
+    }
+
     if (response.ok) {
-      setAddresses(await response.json());
+      setAddresses(responseBody);
     } else if (response.status === 401) {
-      return Router.push(`/giris?cb=${window.location.pathname}`);
+      const cbQuery = window.location.search
+        ? `&cb-query=${window.location.search}`
+        : "";
+      return Router.push(`/giris?cb=${window.location.pathname}${cbQuery}`);
     }
   };
   const update = async () => {
