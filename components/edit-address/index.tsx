@@ -14,7 +14,6 @@ import { success, error } from "../../common/util";
 interface Props {
   open: boolean;
   setOpen: (e: boolean) => void;
-  addressIdToEdit: string;
 }
 
 const useStyles = makeStyles({
@@ -23,33 +22,17 @@ const useStyles = makeStyles({
   },
 });
 
-const EditAddress: FunctionComponent<Props> = ({
-  open,
-  setOpen,
-  addressIdToEdit,
-}) => {
-  const { update, addresses } = useContext(AddressContext);
+const EditAddress: FunctionComponent<Props> = ({ open, setOpen }) => {
+  const { update, addresses, idToEdit, setIdToEdit } = useContext(
+    AddressContext
+  );
   const notif = useContext(NotificationContext);
   const classes = useStyles();
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
-  useEffect(() => {
-    if (addressIdToEdit) {
-      const address = addresses.find(
-        (address) => address._id.$oid === addressIdToEdit
-      );
-      if (address) {
-        setName(address.name);
-        setSurname(address.surname);
-        setTitle(address.title);
-        setText(address.text);
-      } else {
-        error.call(notif, "Hata");
-      }
-    }
-  }, [addressIdToEdit]);
+
   const onSubmit = async () => {
     const response = await fetch("/api/addresses", {
       method: "PATCH",
@@ -57,20 +40,51 @@ const EditAddress: FunctionComponent<Props> = ({
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name, surname, title, text, addressIdToEdit }),
+      body: JSON.stringify({
+        name,
+        surname,
+        title,
+        text,
+        addressIdToEdit: idToEdit,
+      }),
     });
 
     if (response.ok) {
       success.call(notif, "Adres Güncellendi");
       update();
+      setIdToEdit("");
       setOpen(false);
     } else {
       error.call(notif, "Adres Güncellenemedi");
       setOpen(false);
     }
   };
+
+  const onBottomDrawerClose = (status: boolean) => {
+    if (!status) {
+      setIdToEdit("");
+    }
+    setOpen(status);
+  };
+
+  useEffect(() => {
+    if (idToEdit) {
+      setOpen(true);
+      const address = addresses.find(
+        (address) => address._id.$oid === idToEdit
+      );
+      if (address) {
+        setName(address.name);
+        setSurname(address.surname);
+        setTitle(address.title);
+        setText(address.text);
+      } else {
+        error.call(notif, "Hata! Adres Bulunamadı");
+      }
+    }
+  }, [idToEdit]);
   return (
-    <BottomDrawer open={open} setOpen={setOpen}>
+    <BottomDrawer open={open} setOpen={onBottomDrawerClose}>
       <AddressForm
         onSubmit={onSubmit}
         className={classes.form}

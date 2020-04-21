@@ -33,7 +33,8 @@ export interface ObjectId {
 export interface AddressContext {
   addresses: Address[];
   update: Function;
-  edit: (id: string) => void;
+  setIdToEdit: (id: string) => void;
+  idToEdit: string;
 }
 
 export interface Address {

@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 
 const Item: FunctionComponent<Props> = ({ address }) => {
   const classes = useStyles();
-  const { edit } = useContext(AddressContext);
+  const { setIdToEdit } = useContext(AddressContext);
   return (
     <Paper className={classes.paper} elevation={2}>
       <Typography variant="h5" component="h2">
@@ -34,7 +34,7 @@ const Item: FunctionComponent<Props> = ({ address }) => {
         className={classes.action}
         variant="outlined"
         name="Düzenle"
-        onClick={() => edit(address._id.$oid)}
+        onClick={() => setIdToEdit(address._id.$oid)}
       ></Button>
     </Paper>
   );
