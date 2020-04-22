@@ -20,11 +20,12 @@ const AddressList: FunctionComponent = () => {
       spacing={1}
       className={classes.root}
     >
-      {addresses.map((address, i) => (
-        <Grid key={i.toString()} item xs={12} sm={4}>
-          <Item key={i.toString()} address={address}></Item>
-        </Grid>
-      ))}
+      {Array.isArray(addresses) &&
+        addresses.map((address, i) => (
+          <Grid key={i.toString()} item xs={12} sm={4}>
+            <Item key={i.toString()} address={address}></Item>
+          </Grid>
+        ))}
     </Grid>
   );
 };

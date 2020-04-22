@@ -9,7 +9,7 @@ const AddressSelect: FunctionComponent = () => {
       <option aria-label="None" value="">
         Adres Seçin
       </option>
-      {addresses &&
+      {Array.isArray(addresses) &&
         addresses.map((address) => (
           <option key={address._id.$oid} value={address._id.$oid}>
             {address.name}

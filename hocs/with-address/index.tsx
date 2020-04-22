@@ -4,7 +4,7 @@ import { AddressProvider } from "../../context/address";
 import Router from "next/router";
 
 const WithAddress: FunctionComponent = ({ children }) => {
-  const [addresses, setAddresses] = useState<Address[]>([]);
+  const [addresses, setAddresses] = useState<Address[]>(null);
   const [idToEdit, setIdToEdit] = useState("");
   const fetchAddresses = async () => {
     const response = await fetch("/api/addresses", { method: "GET" });

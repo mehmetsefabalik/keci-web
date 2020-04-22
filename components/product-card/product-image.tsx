@@ -10,9 +10,8 @@ const ProductImage: FunctionComponent<Props> = ({
   return (
     <img
       style={{
-        width: "100%",
         maxHeight: "50%",
-        height: "auto",
+        objectFit: "contain",
       }}
       src={src}
     />
