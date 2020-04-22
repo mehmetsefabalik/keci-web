@@ -2,6 +2,7 @@ import React from "react";
 import { Paper, makeStyles, Tabs, Tab, Grid, Link } from "@material-ui/core";
 import { Login } from "../components/login";
 import { Signup } from "../components/signup";
+import { Header } from "../components/header";
 
 const useStyles = makeStyles({
   root: {
@@ -27,6 +28,7 @@ const Giris = () => {
   };
   return (
     <>
+      <Header />
       <Grid container alignItems="center" justify="center">
         <Grid item xs={12} sm={6}>
           <Paper className={classes.root}>

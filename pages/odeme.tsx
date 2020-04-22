@@ -5,6 +5,7 @@ import { WithNotification } from "../hocs/with-notification";
 import { WithBasket } from "../hocs/with-basket";
 import { WithAddress } from "../hocs/with-address";
 import { AddressSelect } from "../components/address-select";
+import { Header } from "../components/header";
 
 const Odeme = () => {
   const fetchMe = async () => {
@@ -28,6 +29,7 @@ const Odeme = () => {
     <WithNotification>
       <WithBasket>
         <WithAddress>
+          <Header />
           <Grid container alignItems="center" justify="center">
             <AddressSelect />
           </Grid>
