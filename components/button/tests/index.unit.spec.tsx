@@ -7,7 +7,9 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import { theme } from "../../../context/theme";
 
 const sandbox = sinon.createSandbox();
-const { random: { number }, lorem: { word, words } } = faker;
+const {
+  lorem: { words },
+} = faker;
 
 describe("Button Unit Tests", () => {
   afterEach(() => {
@@ -17,10 +19,10 @@ describe("Button Unit Tests", () => {
 
   it("should render", () => {
     // Arrange
-    const buttonName = words(4)
+    const buttonName = words(4);
 
     // Act
-    const { container, debug, getByText } = render(
+    const { container, getByText } = render(
       <ThemeProvider theme={theme}>
         <Button color="primary" name={buttonName} onClick={sandbox.stub()} />
       </ThemeProvider>
@@ -37,7 +39,7 @@ describe("Button Unit Tests", () => {
     const onClick = sandbox.stub();
 
     // Act
-    const { container, debug, getByText } = render(
+    const { container } = render(
       <ThemeProvider theme={theme}>
         <Button color="primary" name={buttonName} onClick={onClick} />
       </ThemeProvider>
@@ -46,7 +48,5 @@ describe("Button Unit Tests", () => {
 
     // Assert
     expect(onClick.called).toBe(true);
-
   });
-
 });

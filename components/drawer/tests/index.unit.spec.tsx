@@ -4,7 +4,7 @@ import faker from "faker";
 import { render, cleanup } from "@testing-library/react";
 import { ThemeProvider, SwipeableDrawer } from "@material-ui/core";
 import { theme } from "../../../context/theme";
-import { BottomDrawer } from "..";
+import { Drawer } from "..";
 import { Props } from "../index";
 import { getPropsOfCallByComponent } from "../../../tests/utils";
 import { basketFactory } from "../../../tests/factories";
@@ -15,10 +15,11 @@ const {
   random: { number },
 } = faker;
 
-describe("BottomDrawer Unit Tests", () => {
+describe("Drawer Unit Tests", () => {
   let props: Props = {
     open: false,
     setOpen: sandbox.stub(),
+    anchor: "bottom",
   };
   const totalAmount = number({ min: 1 });
   const basket = basketFactory();
@@ -27,6 +28,7 @@ describe("BottomDrawer Unit Tests", () => {
     props = {
       open: false,
       setOpen: sandbox.stub(),
+      anchor: "bottom",
     };
     sandbox.verifyAndRestore();
     cleanup();
@@ -40,7 +42,7 @@ describe("BottomDrawer Unit Tests", () => {
     render(
       <BasketProvider value={{ basket, totalAmount }}>
         <ThemeProvider theme={theme}>
-          <BottomDrawer {...props} />
+          <Drawer {...props} />
         </ThemeProvider>
       </BasketProvider>
     );
@@ -72,7 +74,7 @@ describe("BottomDrawer Unit Tests", () => {
     render(
       <BasketProvider value={{ basket, totalAmount }}>
         <ThemeProvider theme={theme}>
-          <BottomDrawer {...props} />
+          <Drawer {...props} />
         </ThemeProvider>
       </BasketProvider>
     );
@@ -90,7 +92,7 @@ describe("BottomDrawer Unit Tests", () => {
     render(
       <BasketProvider value={{ basket, totalAmount }}>
         <ThemeProvider theme={theme}>
-          <BottomDrawer {...props} />
+          <Drawer {...props} />
         </ThemeProvider>
       </BasketProvider>
     );

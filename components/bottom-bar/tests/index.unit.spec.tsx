@@ -1,8 +1,14 @@
 import React from "react";
-import sinon, { SinonSpy } from "sinon";
+import sinon from "sinon";
 import faker from "faker";
-import { render, cleanup, fireEvent } from "@testing-library/react";
-import { ThemeProvider, Button, Paper, Typography, Badge } from "@material-ui/core";
+import { render, cleanup } from "@testing-library/react";
+import {
+  ThemeProvider,
+  Button,
+  Paper,
+  Typography,
+  Badge,
+} from "@material-ui/core";
 import { theme } from "../../../context/theme";
 import { BottomBar, Props } from "../index";
 import { ShoppingCart } from "@material-ui/icons";
@@ -11,7 +17,9 @@ import { basketFactory } from "../../../tests/factories";
 import { BasketProvider } from "../../../context/basket";
 
 const sandbox = sinon.createSandbox();
-const { random: { number }, lorem: { word, words } } = faker;
+const {
+  random: { number },
+} = faker;
 
 describe("BottomBar Unit Tests", () => {
   let props: Props = {
@@ -19,7 +27,7 @@ describe("BottomBar Unit Tests", () => {
     onBuyClick: sandbox.stub(),
   };
   let totalAmount = number({ min: 1 });
-  let basket = basketFactory();
+  const basket = basketFactory();
 
   beforeEach(() => {
     totalAmount = number({ min: 1 });
@@ -50,7 +58,9 @@ describe("BottomBar Unit Tests", () => {
     // Assert
     const spy = React.createElement as any;
     expect(spy.calledWith(Button)).toBe(true);
-    expect(getPropsOfCallByComponent(spy, Button).onClick).toBe(props.onBuyClick);
+    expect(getPropsOfCallByComponent(spy, Button).onClick).toBe(
+      props.onBuyClick
+    );
     expect(spy.calledWith(Paper)).toBe(true);
     expect(getPropsOfCallByComponent(spy, Paper).onClick).toBe(props.onClick);
     expect(spy.calledWith(ShoppingCart)).toBe(true);
@@ -75,5 +85,4 @@ describe("BottomBar Unit Tests", () => {
     // Assert
     expect(queryByText(`${totalAmount}₺`)).toBeNull();
   });
-
 });

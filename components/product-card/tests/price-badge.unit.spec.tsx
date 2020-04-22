@@ -1,13 +1,16 @@
 import React from "react";
 import sinon from "sinon";
 import faker from "faker";
-import { render, cleanup, fireEvent } from "@testing-library/react";
+import { render, cleanup } from "@testing-library/react";
 import { ThemeProvider } from "@material-ui/core";
 import { theme } from "../../../context/theme";
 import { PriceBadge } from "../price-badge";
 
 const sandbox = sinon.createSandbox();
-const { random: { number }, lorem: { word, words } } = faker;
+const {
+  random: { number },
+  lorem: { words },
+} = faker;
 
 describe("Badge Unit Tests", () => {
   afterEach(() => {
@@ -30,7 +33,5 @@ describe("Badge Unit Tests", () => {
     // Assert
     expect(getByText(`${price}₺`)).toBeInTheDocument();
     expect(getByText(text)).toBeInTheDocument();
-
   });
-
 });

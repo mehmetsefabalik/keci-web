@@ -4,7 +4,7 @@ import React, {
   useContext,
   useEffect,
 } from "react";
-import { BottomDrawer } from "../bottom-drawer";
+import { Drawer } from "../drawer";
 import { AddressForm } from "../address-form";
 import { makeStyles } from "@material-ui/core";
 import AddressContext from "../../context/address";
@@ -60,7 +60,7 @@ const EditAddress: FunctionComponent<Props> = ({ open, setOpen }) => {
     }
   };
 
-  const onBottomDrawerClose = (status: boolean) => {
+  const onDrawerClose = (status: boolean) => {
     if (!status) {
       setIdToEdit("");
     }
@@ -84,7 +84,7 @@ const EditAddress: FunctionComponent<Props> = ({ open, setOpen }) => {
     }
   }, [idToEdit]);
   return (
-    <BottomDrawer open={open} setOpen={onBottomDrawerClose}>
+    <Drawer open={open} setOpen={onDrawerClose} anchor="bottom">
       <AddressForm
         onSubmit={onSubmit}
         className={classes.form}
@@ -97,7 +97,7 @@ const EditAddress: FunctionComponent<Props> = ({ open, setOpen }) => {
         setTitle={setTitle}
         setText={setText}
       />
-    </BottomDrawer>
+    </Drawer>
   );
 };
 export { EditAddress };

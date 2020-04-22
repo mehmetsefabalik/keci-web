@@ -5,7 +5,7 @@ import React, {
   useEffect,
 } from "react";
 import Router from "next/router";
-import { BottomDrawer } from "../bottom-drawer";
+import { Drawer } from "../drawer";
 import { AddressForm } from "../address-form";
 import { makeStyles } from "@material-ui/core";
 import AddressContext from "../../context/address";
@@ -64,7 +64,7 @@ const AddAddress: FunctionComponent<Props> = ({ open, setOpen }) => {
     }
   }, [addresses]);
   return (
-    <BottomDrawer open={open} setOpen={setOpen}>
+    <Drawer open={open} setOpen={setOpen} anchor="bottom">
       <AddressForm
         onSubmit={onSubmit}
         className={classes.form}
@@ -77,7 +77,7 @@ const AddAddress: FunctionComponent<Props> = ({ open, setOpen }) => {
         setTitle={setTitle}
         setText={setText}
       />
-    </BottomDrawer>
+    </Drawer>
   );
 };
 export { AddAddress };

@@ -10,6 +10,7 @@ import {
 export interface Props {
   open: boolean;
   setOpen: (e: boolean) => void;
+  anchor: "bottom" | "left" | "right" | "top";
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -19,16 +20,14 @@ const useStyles = makeStyles((theme: Theme) =>
         borderRadius: "5px",
       },
     },
-    title: {
-      margin: "5px 10px",
-    },
   })
 );
 
-const BottomDrawer: FunctionComponent<Props> = ({
+const Drawer: FunctionComponent<Props> = ({
   open,
   setOpen,
   children,
+  anchor,
 }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
@@ -37,7 +36,7 @@ const BottomDrawer: FunctionComponent<Props> = ({
       <SwipeableDrawer
         className={classes.sheet}
         id="bottom-drawer"
-        anchor="bottom"
+        anchor={anchor}
         open={open}
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
@@ -50,4 +49,4 @@ const BottomDrawer: FunctionComponent<Props> = ({
     </>
   );
 };
-export { BottomDrawer };
+export { Drawer };

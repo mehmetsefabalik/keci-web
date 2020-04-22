@@ -1,7 +1,7 @@
 import React from "react";
 import sinon from "sinon";
 import faker from "faker";
-import { render, cleanup, fireEvent } from "@testing-library/react";
+import { render, cleanup } from "@testing-library/react";
 import { ThemeProvider, Paper } from "@material-ui/core";
 import { theme } from "../../../context/theme";
 import { ProductCard } from "..";
@@ -9,7 +9,10 @@ import { ProductImage } from "../product-image";
 import { ProductContent } from "../product-content";
 
 const sandbox = sinon.createSandbox();
-const { random: { number }, lorem: { word, words } } = faker;
+const {
+  random: { number },
+  lorem: { words },
+} = faker;
 
 describe("Product Card Unit Tests", () => {
   const props: any = {};
@@ -29,7 +32,7 @@ describe("Product Card Unit Tests", () => {
     sandbox.spy(React, "createElement");
 
     // Act
-    const { container, debug, getByText } = render(
+    render(
       <ThemeProvider theme={theme}>
         <ProductCard {...props} />
       </ThemeProvider>
@@ -40,6 +43,5 @@ describe("Product Card Unit Tests", () => {
     expect(spy.calledWith(Paper)).toBe(true);
     expect(spy.calledWith(ProductImage)).toBe(true);
     expect(spy.calledWith(ProductContent)).toBe(true);
-
   });
 });

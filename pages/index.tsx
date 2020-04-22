@@ -6,7 +6,7 @@ import { ProductCard } from "../components/product-card";
 import { makeStyles, Theme, createStyles, Grid } from "@material-ui/core";
 import { api } from "../common/constant";
 import { ContentCard } from "../components/content-card";
-import { BottomDrawer } from "../components/bottom-drawer";
+import { Drawer } from "../components/drawer";
 import { Basket } from "../components/basket";
 import { GetServerSideProps } from "next";
 import { Header } from "../components/header";
@@ -33,10 +33,10 @@ const useStyles = makeStyles((theme: Theme) =>
 const Home = ({ listings }) => {
   const classes = useStyles();
 
-  const [bottomDrawerIsOpen, setBottomDrawerIsOpen] = useState(false);
+  const [DrawerIsOpen, setDrawerIsOpen] = useState(false);
 
   const onBottomBarClick = () => {
-    setBottomDrawerIsOpen(!bottomDrawerIsOpen);
+    setDrawerIsOpen(!DrawerIsOpen);
   };
 
   const onBuyClick = (e) => {
@@ -69,11 +69,11 @@ const Home = ({ listings }) => {
             )}
           </Grid>
         </div>
-        <BottomDrawer open={bottomDrawerIsOpen} setOpen={setBottomDrawerIsOpen}>
+        <Drawer open={DrawerIsOpen} setOpen={setDrawerIsOpen} anchor="bottom">
           <div style={{ maxHeight: "50vh", marginBottom: "70px" }}>
             <Basket />
           </div>
-        </BottomDrawer>
+        </Drawer>
         <BottomBar onClick={onBottomBarClick} onBuyClick={onBuyClick} />
       </div>
     </WithBasket>
