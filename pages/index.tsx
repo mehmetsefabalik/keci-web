@@ -39,9 +39,22 @@ const Home = ({ listings }) => {
     setDrawerIsOpen(!DrawerIsOpen);
   };
 
-  const onBuyClick = (e) => {
-    Router.push("/odeme");
+  const onBuyClick = async (e) => {
     e.stopPropagation();
+    const response = await fetch("/api/me", { method: "GET" });
+    if (response.ok) {
+      const data = await response.json();
+      if (
+        data.user_type === "guest" &&
+        !new URLSearchParams(window.location.search).has("allow-guest")
+      ) {
+        return Router.push("/giris?cb=/odeme");
+      }
+
+      return Router.push("/odeme");
+    } else {
+      return Router.push("/giris?cb=/odeme");
+    }
   };
 
   return (
