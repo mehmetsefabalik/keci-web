@@ -5,7 +5,7 @@ import { NativeSelect } from "@material-ui/core";
 const AddressSelect: FunctionComponent = () => {
   const { addresses } = useContext(AddressContext);
   return (
-    <NativeSelect fullWidth>
+    <NativeSelect inputProps={{ style: { paddingLeft: "15px" } }} fullWidth>
       <option aria-label="None" value="">
         Adres Seçin
       </option>

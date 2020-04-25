@@ -3,38 +3,28 @@ import BasketContext from "../../context/basket";
 import { Item } from "./item";
 import { List, ListSubheader } from "@material-ui/core";
 
-const Basket: FunctionComponent<{}> = () => {
-  const { basket, updateBasket } = useContext(BasketContext);
+const BasketItemList: FunctionComponent<{}> = () => {
+  const { basket } = useContext(BasketContext);
   const getItemName = (id: string) =>
     basket.product_info.find((product) => product._id.$oid === id).name;
-  const updateItem = async (id: string, count: number) => {
-    await fetch("/api/basket", {
-      method: "PATCH",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ product_id: id, count }),
-    });
-    updateBasket();
-  };
+  const getPrice = (id: string) =>
+    basket.product_info.find((product) => product._id.$oid === id).price;
   return (
     <List
       component="nav"
-      subheader={<ListSubheader component="div">Sepet</ListSubheader>}
+      subheader={<ListSubheader component="div">Ürün Listesi</ListSubheader>}
     >
       {basket &&
         Array.isArray(basket.content) &&
         basket.content.map((item, i) => (
           <Item
             key={i.toString()}
-            id={item.product_id.$oid}
+            price={getPrice(item.product_id.$oid)}
             name={getItemName(item.product_id.$oid)}
             count={item.count}
-            update={updateItem}
           />
         ))}
     </List>
   );
 };
-export { Basket };
+export { BasketItemList };
