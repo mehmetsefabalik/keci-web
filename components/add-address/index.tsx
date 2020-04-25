@@ -51,7 +51,7 @@ const AddAddress: FunctionComponent<Props> = ({ open, setOpen }) => {
       const callback = query.get("cb");
       if (callback) {
         const cbQuery = query.get("cb-query") || "";
-        Router.push(callback + cbQuery);
+        Router.replace(callback + cbQuery);
       }
     } else {
       console.log("error");

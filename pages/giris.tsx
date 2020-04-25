@@ -1,7 +1,9 @@
 import React from "react";
+import Router from "next/router";
 import { Paper, makeStyles, Tabs, Tab, Grid, Link } from "@material-ui/core";
 import { Login } from "../components/login";
 import { Signup } from "../components/signup";
+import { WithNotification } from "../hocs/with-notification";
 import { Header } from "../components/header";
 
 const useStyles = makeStyles({
@@ -27,7 +29,7 @@ const Giris = () => {
     setTab(newValue);
   };
   return (
-    <>
+    <WithNotification>
       <Header />
       <Grid container alignItems="center" justify="center">
         <Grid item xs={12} sm={6}>
@@ -54,12 +56,15 @@ const Giris = () => {
       >
         <Grid item xs={10} sm={3}>
           {tab === 0 ? <Login /> : <Signup />}
-          <Link style={{ marginTop: "10px" }} href="/odeme?allow-guest=true">
+          <Link
+            style={{ marginTop: "10px" }}
+            onClick={() => Router.replace("/odeme?allow-guest=true")}
+          >
             Kayıt Olmadan Devam Et
           </Link>
         </Grid>
       </Grid>
-    </>
+    </WithNotification>
   );
 };
 

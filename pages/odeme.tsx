@@ -23,10 +23,10 @@ const Odeme = () => {
         data.user_type === "guest" &&
         !new URLSearchParams(window.location.search).has("allow-guest")
       ) {
-        return Router.push("/giris?cb=/odeme");
+        return Router.replace("/giris?cb=/odeme");
       }
     } else {
-      return Router.push("/giris?cb=/odeme");
+      return Router.replace("/giris?cb=/odeme");
     }
   };
   useEffect(() => {
