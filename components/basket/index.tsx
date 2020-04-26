@@ -1,9 +1,22 @@
 import React, { FunctionComponent, useContext } from "react";
 import BasketContext from "../../context/basket";
 import { Item } from "./item";
-import { List, ListSubheader } from "@material-ui/core";
+import { List, ListSubheader, makeStyles } from "@material-ui/core";
+import { Content } from "../bottom-bar/content";
+
+const useStyle = makeStyles({
+  buyBox: {
+    position: "fixed",
+    height: "60px",
+    bottom: "0px",
+    width: "100vw",
+    display: "flex",
+    alignItems: "center",
+  },
+});
 
 const Basket: FunctionComponent<{}> = () => {
+  const classes = useStyle();
   const { basket, updateBasket } = useContext(BasketContext);
   const getItemName = (id: string) =>
     basket.product_info.find((product) => product._id.$oid === id).name;
@@ -34,6 +47,9 @@ const Basket: FunctionComponent<{}> = () => {
             update={updateItem}
           />
         ))}
+      <div className={classes.buyBox}>
+        <Content onBuyClick={() => {}} />
+      </div>
     </List>
   );
 };

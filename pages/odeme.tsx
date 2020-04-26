@@ -9,8 +9,7 @@ import { Header } from "../components/header";
 import { BasketItemList } from "../components/basket-item-list";
 import { BottomBar } from "../components/bottom-bar";
 import { AddAddress } from "../components/add-address";
-import { Drawer } from "../components/drawer";
-import { Basket } from "../components/basket";
+import { WithBasketDrawer } from "../hocs/with-basket-drawer";
 
 const useStyle = makeStyles({
   mt20: {
@@ -21,11 +20,8 @@ const useStyle = makeStyles({
 
 const Odeme = () => {
   const classes = useStyle();
-  const [basketDrawerIsOpen, setBasketDrawerIsOpen] = useState(false);
   const [addAddressOpen, setAddAddressOpen] = useState(false);
   const [selectedAddressId, setSelectedAddressId] = useState("");
-
-  const onBottomBarClick = () => setBasketDrawerIsOpen(!basketDrawerIsOpen);
 
   const onBuyClick = () => {};
 
@@ -51,43 +47,36 @@ const Odeme = () => {
     <WithNotification>
       <WithBasket>
         <WithAddress>
-          <Header />
-          <Grid container alignItems="center" justify="center">
-            <Grid
-              item
-              container
-              alignItems="center"
-              justify="center"
-              spacing={2}
-              sm={10}
-              md={8}
-            >
-              <Grid item xs={10} sm={8} md={8} className={classes.mt20}>
-                <Paper elevation={2}>
-                  <BasketItemList />
-                </Paper>
+          <WithBasketDrawer>
+            <Header />
+            <Grid container alignItems="center" justify="center">
+              <Grid
+                item
+                container
+                alignItems="center"
+                justify="center"
+                spacing={2}
+                sm={10}
+                md={8}
+              >
+                <Grid item xs={10} sm={8} md={8} className={classes.mt20}>
+                  <Paper elevation={2}>
+                    <BasketItemList />
+                  </Paper>
+                </Grid>
+                <Grid item xs={10} sm={8} md={8} className={classes.mt20}>
+                  <Paper elevation={2}>
+                    <AddressSelect
+                      selectedAddressId={selectedAddressId}
+                      setSelectedAddressId={setSelectedAddressId}
+                    />
+                  </Paper>
+                </Grid>
+                <BottomBar onBuyClick={onBuyClick} />
               </Grid>
-              <Grid item xs={10} sm={8} md={8} className={classes.mt20}>
-                <Paper elevation={2}>
-                  <AddressSelect
-                    selectedAddressId={selectedAddressId}
-                    setSelectedAddressId={setSelectedAddressId}
-                  />
-                </Paper>
-              </Grid>
-              <BottomBar onClick={onBottomBarClick} onBuyClick={onBuyClick} />
             </Grid>
-          </Grid>
-          <Drawer
-            open={basketDrawerIsOpen}
-            setOpen={setBasketDrawerIsOpen}
-            anchor="bottom"
-          >
-            <div className={classes.basket}>
-              <Basket />
-            </div>
-          </Drawer>
-          <AddAddress open={addAddressOpen} setOpen={setAddAddressOpen} />
+            <AddAddress open={addAddressOpen} setOpen={setAddAddressOpen} />
+          </WithBasketDrawer>
         </WithAddress>
       </WithBasket>
     </WithNotification>

@@ -53,3 +53,8 @@ export interface NotificationContext {
   setMessage: (e: string) => void;
   setSeverity: (e: NotificationSeverity) => void;
 }
+
+export interface BasketDrawerContext {
+  open: boolean;
+  setOpen: (e: boolean) => void;
+}
