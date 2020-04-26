@@ -4,7 +4,6 @@ import React, {
   useContext,
   useEffect,
 } from "react";
-import Router from "next/router";
 import { Drawer } from "../drawer";
 import { AddressForm } from "../address-form";
 import { makeStyles } from "@material-ui/core";
@@ -47,12 +46,6 @@ const AddAddress: FunctionComponent<Props> = ({ open, setOpen }) => {
       notif.setOpen(true);
       update();
       setOpen(false);
-      const query = new URLSearchParams(window.location.search);
-      const callback = query.get("cb");
-      if (callback) {
-        const cbQuery = query.get("cb-query") || "";
-        Router.replace(callback + cbQuery);
-      }
     } else {
       console.log("error");
     }

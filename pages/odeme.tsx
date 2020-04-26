@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Grid, makeStyles, Paper } from "@material-ui/core";
 import Router from "next/router";
 import { WithNotification } from "../hocs/with-notification";
@@ -8,15 +8,27 @@ import { AddressSelect } from "../components/address-select";
 import { Header } from "../components/header";
 import { BasketItemList } from "../components/basket-item-list";
 import { BottomBar } from "../components/bottom-bar";
+import { AddAddress } from "../components/add-address";
+import { Drawer } from "../components/drawer";
+import { Basket } from "../components/basket";
 
 const useStyle = makeStyles({
   mt20: {
     marginTop: "20px",
   },
+  basket: { maxHeight: "50vh", marginBottom: "70px" },
 });
 
 const Odeme = () => {
   const classes = useStyle();
+  const [basketDrawerIsOpen, setBasketDrawerIsOpen] = useState(false);
+  const [addAddressOpen, setAddAddressOpen] = useState(false);
+  const [selectedAddressId, setSelectedAddressId] = useState("");
+
+  const onBottomBarClick = () => setBasketDrawerIsOpen(!basketDrawerIsOpen);
+
+  const onBuyClick = () => {};
+
   const fetchMe = async () => {
     const response = await fetch("/api/me", { method: "GET" });
     if (response.ok) {
@@ -34,6 +46,7 @@ const Odeme = () => {
   useEffect(() => {
     fetchMe();
   }, []);
+
   return (
     <WithNotification>
       <WithBasket>
@@ -56,12 +69,25 @@ const Odeme = () => {
               </Grid>
               <Grid item xs={10} sm={8} md={8} className={classes.mt20}>
                 <Paper elevation={2}>
-                  <AddressSelect />
+                  <AddressSelect
+                    selectedAddressId={selectedAddressId}
+                    setSelectedAddressId={setSelectedAddressId}
+                  />
                 </Paper>
               </Grid>
-              <BottomBar onClick={() => {}} onBuyClick={() => {}} />
+              <BottomBar onClick={onBottomBarClick} onBuyClick={onBuyClick} />
             </Grid>
           </Grid>
+          <Drawer
+            open={basketDrawerIsOpen}
+            setOpen={setBasketDrawerIsOpen}
+            anchor="bottom"
+          >
+            <div className={classes.basket}>
+              <Basket />
+            </div>
+          </Drawer>
+          <AddAddress open={addAddressOpen} setOpen={setAddAddressOpen} />
         </WithAddress>
       </WithBasket>
     </WithNotification>

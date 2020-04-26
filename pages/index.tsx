@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: "space-between",
       margin: "10px",
     },
+    basket: { maxHeight: "50vh", marginBottom: "70px" },
   })
 );
 
@@ -83,11 +84,15 @@ const Home = ({ listings }) => {
           </Grid>
         </div>
         <Drawer open={DrawerIsOpen} setOpen={setDrawerIsOpen} anchor="bottom">
-          <div style={{ maxHeight: "50vh", marginBottom: "70px" }}>
+          <div className={classes.basket}>
             <Basket />
           </div>
         </Drawer>
-        <BottomBar onClick={onBottomBarClick} onBuyClick={onBuyClick} />
+        <BottomBar
+          onClick={onBottomBarClick}
+          onBuyClick={onBuyClick}
+          aboveAll
+        />
       </div>
     </WithBasket>
   );
