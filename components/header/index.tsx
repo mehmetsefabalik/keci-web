@@ -1,4 +1,5 @@
 import React, { FunctionComponent, useState, useContext } from "react";
+import Link from "next/link";
 import {
   AppBar,
   Toolbar,
@@ -44,9 +45,11 @@ const Header: FunctionComponent = () => {
           >
             <Menu />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            Köyden Evine
-          </Typography>
+          <Link href="/">
+            <Typography variant="h6" className={classes.title}>
+              Köyden Evine
+            </Typography>
+          </Link>
           {typeof basketDrawerContext.setOpen === "function" && (
             <IconButton
               onClick={() =>
