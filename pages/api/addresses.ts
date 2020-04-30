@@ -8,7 +8,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const { name, surname, title, text } = req.body;
 
       if (!name || !surname || !title || !text) {
-        return res.status(400).send();
+        return res.status(400).send({});
       }
 
       try {
