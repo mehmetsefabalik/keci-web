@@ -1,15 +1,15 @@
 import React from "react";
 import Router from "next/router";
 import axios from "axios";
-import { BottomBar } from "../components/bottom-bar";
-import { ProductCard } from "../components/product-card";
+import { BottomBar } from "../client/components/bottom-bar";
+import { ProductCard } from "../client/components/product-card";
 import { makeStyles, Theme, createStyles, Grid } from "@material-ui/core";
-import { api } from "../common/constant";
-import { ContentCard } from "../components/content-card";
+import { api } from "../client/common/constant";
+import { ContentCard } from "../client/components/content-card";
 import { GetServerSideProps } from "next";
-import { Header } from "../components/header";
-import { WithBasket } from "../hocs/with-basket";
-import { WithBasketDrawer } from "../hocs/with-basket-drawer";
+import { Header } from "../client/components/header";
+import { WithBasket } from "../client/hocs/with-basket";
+import { WithBasketDrawer } from "../client/hocs/with-basket-drawer";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

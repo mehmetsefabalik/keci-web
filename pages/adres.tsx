@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { makeStyles, Grid, Fab } from "@material-ui/core";
-import { AddressList } from "../components/address-list";
+import { AddressList } from "../client/components/address-list";
 import { Add } from "@material-ui/icons";
-import { AddAddress } from "../components/add-address";
+import { AddAddress } from "../client/components/add-address";
 import { WithNotification } from "../hocs/with-notification";
-import { Header } from "../components/header";
-import { EditAddress } from "../components/edit-address";
+import { Header } from "../client/components/header";
+import { EditAddress } from "../client/components/edit-address";
 import { WithAddress } from "../hocs/with-address";
 
 const useStyles = makeStyles({

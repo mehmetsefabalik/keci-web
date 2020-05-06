@@ -7,13 +7,14 @@
     "build": "next build",
     "start": "next start",
     "test": "npx jest",
-    "lint": "eslint --fix ./pages/**/*.{js,ts,tsx} ./components/**/*.tsx ./context/*.ts ./common/*.ts"
+    "lint": "eslint --fix ./pages/**/*.{js,ts,tsx} ./client/**/**/*.ts ./client/**/*.ts ./bff/**/*.ts"
   },
   "dependencies": {
     "@material-ui/core": "^4.9.11",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.50",
     "axios": "^0.19.2",
+    "class-validator": "^0.12.2",
     "classnames": "^2.2.6",
     "next": "^9.3.4",
     "next-pwa": "^2.2.0",

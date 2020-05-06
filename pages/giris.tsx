@@ -1,10 +1,10 @@
 import React from "react";
 import Router from "next/router";
 import { Paper, makeStyles, Tabs, Tab, Grid, Link } from "@material-ui/core";
-import { Login } from "../components/login";
-import { Signup } from "../components/signup";
-import { WithNotification } from "../hocs/with-notification";
-import { Header } from "../components/header";
+import { Login } from "../client/components/login";
+import { Signup } from "../client/components/signup";
+import { WithNotification } from "../client/hocs/with-notification";
+import { Header } from "../client/components/header";
 
 const useStyles = makeStyles({
   root: {

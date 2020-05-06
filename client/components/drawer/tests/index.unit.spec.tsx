@@ -6,8 +6,8 @@ import { ThemeProvider, SwipeableDrawer } from "@material-ui/core";
 import { theme } from "../../../context/theme";
 import { Drawer } from "..";
 import { Props } from "../index";
-import { getPropsOfCallByComponent } from "../../../tests/utils";
-import { basketFactory } from "../../../tests/factories";
+import { getPropsOfCallByComponent } from "../../../../tests/utils";
+import { basketFactory } from "../../../../tests/factories";
 import { BasketProvider } from "../../../context/basket";
 
 const sandbox = sinon.createSandbox();

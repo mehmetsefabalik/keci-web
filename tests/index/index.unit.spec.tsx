@@ -3,7 +3,7 @@ import Router from "next/router";
 import sinon from "sinon";
 import { render, cleanup } from "@testing-library/react";
 import Home from "../../pages/index";
-import { BottomBar } from "../../components/bottom-bar";
+import { BottomBar } from "../../client/components/bottom-bar";
 import { getPropsOfCallByComponent } from "../utils";
 
 const sandbox = sinon.createSandbox();

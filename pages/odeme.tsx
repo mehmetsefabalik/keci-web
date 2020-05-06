@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import Router from "next/router";
-import { WithNotification } from "../hocs/with-notification";
-import { WithBasket } from "../hocs/with-basket";
-import { WithAddress } from "../hocs/with-address";
-import { Header } from "../components/header";
-import { WithBasketDrawer } from "../hocs/with-basket-drawer";
-import { Checkout } from "../containers/checkout";
+import { WithNotification } from "../client/hocs/with-notification";
+import { WithBasket } from "../client/hocs/with-basket";
+import { WithAddress } from "../client/hocs/with-address";
+import { Header } from "../client/components/header";
+import { WithBasketDrawer } from "../client/hocs/with-basket-drawer";
+import { Checkout } from "../client/containers/checkout";
 
 const Odeme = () => {
   const fetchMe = async () => {

@@ -12,8 +12,8 @@ import {
 import { theme } from "../../../context/theme";
 import { BottomBar, Props } from "../index";
 import { ShoppingCart } from "@material-ui/icons";
-import { getPropsOfCallByComponent } from "../../../tests/utils";
-import { basketFactory } from "../../../tests/factories";
+import { getPropsOfCallByComponent } from "../../../../tests/utils";
+import { basketFactory } from "../../../../tests/factories";
 import { BasketProvider } from "../../../context/basket";
 
 const sandbox = sinon.createSandbox();
