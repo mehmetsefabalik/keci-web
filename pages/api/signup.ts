@@ -2,15 +2,16 @@ import { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 import { api } from "../../client/common/constant";
 import { getExpireDate } from "../../client/common/util";
+import { signupBody } from "../../bff/validation-schemas/signup";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
     case "POST":
       const { phone, password } = req.body;
-      if (!phone || !password) {
-        return res
-          .status(400)
-          .json({ message: "phone or password is missing in body" });
+      const { error } = signupBody.validate({ phone, password });
+      console.log(error)
+      if (error) {
+        return res.status(400).json({ message: error.message });
       }
 
       try {

@@ -1,4 +1,5 @@
-const withPWA = require('next-pwa')
+/* eslint-disable @typescript-eslint/no-var-requires */
+const withPWA = require("next-pwa");
 
 module.exports = withPWA({
   poweredByHeader: false,
@@ -6,6 +7,7 @@ module.exports = withPWA({
     autoPrerender: false,
   },
   pwa: {
-    dest: 'public'
-  }
-})
+    dest: "public",
+    disable: true,
+  },
+});

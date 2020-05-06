@@ -3,10 +3,10 @@ import { makeStyles, Grid, Fab } from "@material-ui/core";
 import { AddressList } from "../client/components/address-list";
 import { Add } from "@material-ui/icons";
 import { AddAddress } from "../client/components/add-address";
-import { WithNotification } from "../hocs/with-notification";
+import { WithNotification } from "../client/hocs/with-notification";
 import { Header } from "../client/components/header";
 import { EditAddress } from "../client/components/edit-address";
-import { WithAddress } from "../hocs/with-address";
+import { WithAddress } from "../client/hocs/with-address";
 
 const useStyles = makeStyles({
   fab: {
