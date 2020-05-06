@@ -34,20 +34,4 @@ describe("Home Page Unit Tests", () => {
     const spy = React.createElement as any;
     expect(spy.calledWith(BottomBar)).toBe(true);
   });
-
-  it("should call onBuyClick", () => {
-    // Arrange
-    sandbox.spy(React, "createElement");
-    const eventStub = sandbox.stub();
-
-    // Act
-    render(<Home {...props} />);
-    const spy = React.createElement as any;
-    getPropsOfCallByComponent(spy, BottomBar).onBuyClick({
-      stopPropagation: eventStub,
-    });
-
-    // Assert
-    expect(eventStub.called).toBe(true);
-  });
 });

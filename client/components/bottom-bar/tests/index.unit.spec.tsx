@@ -23,7 +23,6 @@ const {
 
 describe("BottomBar Unit Tests", () => {
   let props: Props = {
-    onClick: sandbox.stub(),
     onBuyClick: sandbox.stub(),
   };
   let totalAmount = number({ min: 1 });
@@ -32,7 +31,6 @@ describe("BottomBar Unit Tests", () => {
   beforeEach(() => {
     totalAmount = number({ min: 1 });
     props = {
-      onClick: sandbox.stub(),
       onBuyClick: sandbox.stub(),
     };
   });
@@ -62,7 +60,6 @@ describe("BottomBar Unit Tests", () => {
       props.onBuyClick
     );
     expect(spy.calledWith(Paper)).toBe(true);
-    expect(getPropsOfCallByComponent(spy, Paper).onClick).toBe(props.onClick);
     expect(spy.calledWith(ShoppingCart)).toBe(true);
     expect(spy.calledWith(Typography)).toBe(true);
     expect(spy.calledWith(Badge)).toBe(true);
