@@ -1,9 +1,11 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useContext } from "react";
 import Router from "next/router";
 import { makeStyles } from "@material-ui/core";
-import { Button } from "../button";
-import { PhoneInput } from "../phone-input";
-import { PasswordInput } from "../password-input";
+import { Button } from "../../components/button";
+import { PhoneInput } from "../../components/phone-input";
+import { PasswordInput } from "../../components/password-input";
+import { error } from "../../common/util";
+import NotificationContext from "../../context/notification";
 
 const useStyles = makeStyles({
   root: {
@@ -22,6 +24,7 @@ const useStyles = makeStyles({
 
 const Signup: FunctionComponent<{}> = () => {
   const classes = useStyles();
+  const notif = useContext(NotificationContext);
   const [phone, setPhone] = React.useState("05");
   const [password, setPassword] = React.useState("");
   const onSignup = async (e) => {
@@ -36,8 +39,12 @@ const Signup: FunctionComponent<{}> = () => {
       body: JSON.stringify({ phone, password }),
     });
     if (response.ok) {
-      Router.push(new URLSearchParams(window.location.search).get("cb") || "/");
+      return Router.push(
+        new URLSearchParams(window.location.search).get("cb") || "/"
+      );
     }
+    const data = await response.json();
+    error.call(notif, data.message);
   };
   return (
     <form onSubmit={onSignup}>
@@ -46,9 +53,6 @@ const Signup: FunctionComponent<{}> = () => {
       <Button
         type="submit"
         name="Kayıt Ol"
-        onClick={() => {
-          console.log("on Signup click");
-        }}
         fullWidth
         className={classes.element}
       />

@@ -1,8 +1,8 @@
 import React from "react";
 import Router from "next/router";
 import { Paper, makeStyles, Tabs, Tab, Grid, Link } from "@material-ui/core";
-import { Login } from "../client/components/login";
-import { Signup } from "../client/components/signup";
+import { Login } from "../client/containers/login";
+import { Signup } from "../client/containers/signup";
 import { WithNotification } from "../client/hocs/with-notification";
 import { Header } from "../client/components/header";
 

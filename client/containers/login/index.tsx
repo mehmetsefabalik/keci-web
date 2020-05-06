@@ -1,9 +1,11 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useContext } from "react";
 import Router from "next/router";
 import { makeStyles } from "@material-ui/core";
-import { Button } from "../button";
-import { PhoneInput } from "../phone-input";
-import { PasswordInput } from "../password-input";
+import { Button } from "../../components/button";
+import { PhoneInput } from "../../components/phone-input";
+import { PasswordInput } from "../../components/password-input";
+import NotificationContext from "../../context/notification";
+import { error } from "../../common/util";
 
 const useStyles = makeStyles({
   root: {
@@ -22,11 +24,11 @@ const useStyles = makeStyles({
 
 const Login: FunctionComponent<{}> = () => {
   const classes = useStyles();
+  const notif = useContext(NotificationContext);
   const [phone, setPhone] = React.useState("05");
   const [password, setPassword] = React.useState("");
   const onLogin = async (e) => {
     e.preventDefault();
-    console.log("on login", phone, password);
     const response = await fetch("/api/login", {
       method: "POST",
       headers: {
@@ -36,8 +38,12 @@ const Login: FunctionComponent<{}> = () => {
       body: JSON.stringify({ phone, password }),
     });
     if (response.ok) {
-      Router.push(new URLSearchParams(window.location.search).get("cb") || "/");
+      return Router.push(
+        new URLSearchParams(window.location.search).get("cb") || "/"
+      );
     }
+    const data = await response.json();
+    error.call(notif, data.message);
   };
   return (
     <form onSubmit={onLogin}>
@@ -46,9 +52,6 @@ const Login: FunctionComponent<{}> = () => {
       <Button
         type="submit"
         name="Giriş"
-        onClick={() => {
-          console.log("on login click");
-        }}
         fullWidth
         className={classes.element}
       />

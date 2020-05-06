@@ -2,15 +2,16 @@ import { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 import { api } from "../../client/common/constant";
 import { getExpireDate } from "../../client/common/util";
+import { signupBody } from "../../bff/validation-schemas/signup";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
     case "POST":
       const { phone, password } = req.body;
-      if (!phone || !password) {
-        return res
-          .status(400)
-          .json({ message: "phone or password is missing in body" });
+
+      const { error } = signupBody.validate({ phone, password });
+      if (error) {
+        return res.status(400).json({ message: error.message });
       }
 
       try {
@@ -37,8 +38,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         }
         return res.status(200).json(response.data);
       } catch (e) {
-        console.log("error: ", e);
-        return res.status(500).json({ message: "Network Error" });
+        if (!e.response) {
+          return res
+            .status(500)
+            .json({ message: "Beklenmeyen bir hata oluştu" });
+        }
+        return res
+          .status(e.response.status)
+          .json({ message: "Telefon Numarası veya şifre hatalı" });
       }
     default:
       return res.status(404).json({});

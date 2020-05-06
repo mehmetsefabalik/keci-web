@@ -9,7 +9,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     case "POST":
       const { phone, password } = req.body;
       const { error } = signupBody.validate({ phone, password });
-      console.log(error)
       if (error) {
         return res.status(400).json({ message: error.message });
       }
@@ -38,8 +37,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         }
         return res.status(200).json(response.data);
       } catch (e) {
-        console.log("error: ", e);
-        return res.status(500).json({ message: "Network Error" });
+        if (!e.response) {
+          return res
+            .status(500)
+            .json({ message: "Beklenmeyen bir hata oluştu" });
+        }
+        return res
+          .status(e.response.status)
+          .json({ message: "Telefon Numarası veya şifre hatalı" });
       }
     default:
       return res.status(404).json({});
