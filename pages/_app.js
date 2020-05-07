@@ -31,6 +31,10 @@ export default class MyApp extends App {
 
           <link rel="manifest" href="/manifest.json" />
           <link rel="apple-touch-icon" href="/apple-icon.png"></link>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+            rel="stylesheet"
+          ></link>
           <meta name="theme-color" content="#317EFB" />
         </Head>
         <ThemeProvider theme={theme}>

@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core";
 import { Button } from "../../components/button";
 import { PhoneInput } from "../../components/phone-input";
 import { PasswordInput } from "../../components/password-input";
-import { error } from "../../common/util";
+import { error, success } from "../../common/util";
 import NotificationContext from "../../context/notification";
 
 const useStyles = makeStyles({
@@ -29,7 +29,6 @@ const Signup: FunctionComponent<{}> = () => {
   const [password, setPassword] = React.useState("");
   const onSignup = async (e) => {
     e.preventDefault();
-    console.log("on signup");
     const response = await fetch("/api/signup", {
       method: "POST",
       headers: {
@@ -39,6 +38,7 @@ const Signup: FunctionComponent<{}> = () => {
       body: JSON.stringify({ phone, password }),
     });
     if (response.ok) {
+      success.call(notif, "Başarılı");
       return Router.push(
         new URLSearchParams(window.location.search).get("cb") || "/"
       );

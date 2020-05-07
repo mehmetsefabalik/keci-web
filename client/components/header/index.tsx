@@ -22,7 +22,8 @@ const useStyles = makeStyles({
     marginLeft: "20px",
   },
   title: {
-    fontFamily: '"Comic Sans MS", cursive, sans-serif',
+    fontFamily: '"Pacifico", cursive',
+    fontSize: "25px",
     flexGrow: 1,
   },
 });

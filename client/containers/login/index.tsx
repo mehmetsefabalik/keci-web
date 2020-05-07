@@ -5,7 +5,7 @@ import { Button } from "../../components/button";
 import { PhoneInput } from "../../components/phone-input";
 import { PasswordInput } from "../../components/password-input";
 import NotificationContext from "../../context/notification";
-import { error } from "../../common/util";
+import { error, success } from "../../common/util";
 
 const useStyles = makeStyles({
   root: {
@@ -38,6 +38,7 @@ const Login: FunctionComponent<{}> = () => {
       body: JSON.stringify({ phone, password }),
     });
     if (response.ok) {
+      success.call(notif, "Başarılı");
       return Router.push(
         new URLSearchParams(window.location.search).get("cb") || "/"
       );
