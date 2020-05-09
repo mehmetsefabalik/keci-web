@@ -8,7 +8,7 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
-import { Menu, ShoppingCart } from "@material-ui/icons";
+import { Menu, ShoppingCart, Person } from "@material-ui/icons";
 import classNames from "classnames";
 import { SideMenu } from "../side-menu";
 import BasketContext from "../../context/basket";
@@ -50,6 +50,11 @@ const Header: FunctionComponent = () => {
             <Typography variant="h6" className={classes.title}>
               Köyden Evine
             </Typography>
+          </Link>
+          <Link href="/hesabim">
+            <IconButton aria-label="account">
+              <Person className={classes.black} />
+            </IconButton>
           </Link>
           {typeof basketDrawerContext.setOpen === "function" && (
             <IconButton
