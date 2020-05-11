@@ -58,3 +58,8 @@ export interface BasketDrawerContext {
   open: boolean;
   setOpen: (e: boolean) => void;
 }
+
+export interface LoaderContext {
+  open: boolean;
+  setOpen: (e: boolean) => void;
+}
