@@ -1,7 +1,6 @@
-import React, { FunctionComponent, useState, useEffect } from "react";
+import React, { FunctionComponent, useState } from "react";
 import { LoaderProvider } from "../../context/loader";
 import { CircularProgress } from "@material-ui/core";
-import ReactDOM from "react-dom";
 
 const WithLoader: FunctionComponent = ({ children }) => {
   const [open, setOpen] = useState(false);
@@ -16,12 +15,20 @@ const WithLoader: FunctionComponent = ({ children }) => {
         justifyContent: "center",
         alignItems: "center",
         top: 0,
+        left: 0,
+        background: "rgba(51, 51, 51, 0.7)",
+        zIndex: 1101,
       }}
     >
       <CircularProgress disableShrink />
     </div>
   );
 
-  return <LoaderProvider value={{ open, setOpen }}>{children}</LoaderProvider>;
+  return (
+    <LoaderProvider value={{ open, setOpen }}>
+      {children}
+      {open && loader}
+    </LoaderProvider>
+  );
 };
 export { WithLoader };

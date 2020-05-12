@@ -17,12 +17,12 @@ const AllowRegisteredUser: FunctionComponent<Props> = ({ children, cb }) => {
         data.user_type === "guest" &&
         !new URLSearchParams(window.location.search).has("allow-guest")
       ) {
-        //return Router.replace(`/giris?cb=${cb}`);
+        return Router.replace(`/giris?cb=${cb}`);
       }
     } else {
-      //return Router.replace(`/giris?cb=${cb}`);
+      return Router.replace(`/giris?cb=${cb}`);
     }
-    //if (setOpen) setOpen(false);
+    if (setOpen) setOpen(false);
   };
   useEffect(() => {
     fetchMe();
