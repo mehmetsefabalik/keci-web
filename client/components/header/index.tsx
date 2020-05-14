@@ -28,7 +28,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Header: FunctionComponent = () => {
+const Header: FunctionComponent<Props> = ({ showAccountIcon = true }) => {
   const classes = useStyles();
   const { itemCount } = useContext(BasketContext);
   const basketDrawerContext = useContext(BasketDrawerContext);
@@ -51,11 +51,13 @@ const Header: FunctionComponent = () => {
               Köyden Evine
             </Typography>
           </Link>
-          <Link href="/hesabim">
-            <IconButton aria-label="account">
-              <Person className={classes.black} />
-            </IconButton>
-          </Link>
+          {showAccountIcon && (
+            <Link href="/hesabim">
+              <IconButton aria-label="account">
+                <Person className={classes.black} />
+              </IconButton>
+            </Link>
+          )}
           {typeof basketDrawerContext.setOpen === "function" && (
             <IconButton
               onClick={() =>
@@ -76,5 +78,9 @@ const Header: FunctionComponent = () => {
     </>
   );
 };
+
+export interface Props {
+  showAccountIcon?: boolean;
+}
 
 export { Header };

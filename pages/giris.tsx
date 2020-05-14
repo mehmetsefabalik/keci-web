@@ -30,7 +30,7 @@ const Giris = () => {
   };
   return (
     <WithNotification>
-      <Header />
+      <Header showAccountIcon={false} />
       <Grid container alignItems="center" justify="center">
         <Grid item xs={12} sm={6}>
           <Paper className={classes.root}>
