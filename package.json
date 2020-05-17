@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 443",
     "test": "npx jest",
     "lint": "eslint --fix ./pages/**/*.{js,ts,tsx} ./client/**/**/*.ts ./client/**/*.ts ./bff/**/*.ts"
   },

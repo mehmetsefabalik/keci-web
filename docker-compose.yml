@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  mobile-api:
+    image: "mobile-api"
+    ports:
+      - 3003:3003
+
+  web:
+    image: "keci-web"
+    ports:
+      - 443:443
+    environment:
+      - MOBILE_API=http://mobile-api:3003
+    links:
+      - mobile-api

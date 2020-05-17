@@ -4,7 +4,6 @@ import axios from "axios";
 import { BottomBar } from "../client/components/bottom-bar";
 import { ProductCard } from "../client/components/product-card";
 import { makeStyles, Theme, createStyles, Grid } from "@material-ui/core";
-import { api } from "../client/common/constant";
 import { ContentCard } from "../client/components/content-card";
 import { GetServerSideProps } from "next";
 import { Header } from "../client/components/header";

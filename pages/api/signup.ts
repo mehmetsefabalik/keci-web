@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
-import { api } from "../../client/common/constant";
 import { getExpireDate } from "../../client/common/util";
 import { signupBody } from "../../bff/validation-schemas/signup";
 

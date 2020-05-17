@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
-import { api } from "../../client/common/constant";
 import { getExpireDate } from "../../client/common/util";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {

@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
-import { api } from "../../client/common/constant";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
