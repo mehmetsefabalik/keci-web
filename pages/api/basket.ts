@@ -19,7 +19,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           headers.Cookie = `access_token=${req.cookies.access_token}`;
         }
         const response = await axios.post(
-          `${api.mobile}/basket`,
+          `${process.env.MOBILE_API}/basket`,
           { product_id },
           { headers, withCredentials: true }
         );
@@ -50,7 +50,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           connection: "keep-alive",
           Cookie: `access_token=${req.cookies.access_token}`,
         };
-        const response = await axios.get(`${api.mobile}/basket`, { headers });
+        const response = await axios.get(`${process.env.MOBILE_API}/basket`, {
+          headers,
+        });
         return res.status(200).json(response.data);
       } catch (e) {
         console.log("error: ", e);
@@ -71,7 +73,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           Cookie: `access_token=${req.cookies.access_token}`,
         };
         const response = await axios.patch(
-          `${api.mobile}/basket`,
+          `${process.env.MOBILE_API}/basket`,
           { product_id: req.body.product_id, count: req.body.count },
           { headers }
         );

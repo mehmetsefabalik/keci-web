@@ -84,7 +84,7 @@ const Home = ({ listings }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const response = await axios.get(`${api.mobile}/listings`);
+  const response = await axios.get(`${process.env.MOBILE_API}/listings`);
   return { props: { listings: response.data } };
 };
 

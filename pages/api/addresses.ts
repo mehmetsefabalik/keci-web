@@ -17,7 +17,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           headers.Cookie = `access_token=${req.cookies.access_token}`;
         }
         const response = await axios.post(
-          `${api.mobile}/addresses`,
+          `${process.env.MOBILE_API}/addresses`,
           { name, surname, title, text, district_id: 0, neighborhood_id: 0 },
           { headers, withCredentials: true }
         );
@@ -38,7 +38,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           headers.Cookie = `access_token=${req.cookies.access_token}`;
         }
         const response = await axios.patch(
-          `${api.mobile}/addresses/${req.body.addressIdToEdit}`,
+          `${process.env.MOBILE_API}/addresses/${req.body.addressIdToEdit}`,
           {
             name: req.body.name,
             surname: req.body.surname,
@@ -64,9 +64,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           connection: "keep-alive",
           Cookie: `access_token=${req.cookies.access_token}`,
         };
-        const response = await axios.get(`${api.mobile}/addresses`, {
-          headers,
-        });
+        const response = await axios.get(
+          `${process.env.MOBILE_API}/addresses`,
+          {
+            headers,
+          }
+        );
         return res.status(200).json(response.data);
       } catch (e) {
         console.log("error: ", e);

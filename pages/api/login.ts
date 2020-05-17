@@ -20,7 +20,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           headers.Cookie = `access_token=${req.cookies.access_token}`;
         }
         const response = await axios.post(
-          `${api.mobile}/users/validate`,
+          `${process.env.MOBILE_API}/users/validate`,
           { phone, password },
           { headers, withCredentials: true }
         );
