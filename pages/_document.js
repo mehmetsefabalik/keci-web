@@ -20,6 +20,19 @@ class MyDocument extends Document {
             content="minimum-scale=1, initial-scale=1, width=device-width"
           />
           <meta name="theme-color" content={theme.palette.primary.main} />
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=UA-166945355-1"
+          ></script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'UA-166945355-1');
+                `,
+            }}
+          />
         </Head>
         <body>
           <Main />
