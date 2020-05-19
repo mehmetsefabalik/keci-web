@@ -13,7 +13,7 @@ COPY . /usr/src/app
 
 # Building app
 RUN npm run build
-EXPOSE 443
+EXPOSE 3000
 
 # Running the app
 CMD "npm" "run" "start"

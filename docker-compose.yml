@@ -9,7 +9,7 @@ services:
   web:
     image: "keci-web"
     ports:
-      - 443:443
+      - 3000:3000
     environment:
       - MOBILE_API=http://mobile-api:3003
     links:
