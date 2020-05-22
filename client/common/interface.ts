@@ -63,3 +63,18 @@ export interface LoaderContext {
   open: boolean;
   setOpen: (e: boolean) => void;
 }
+
+export interface Order {
+  _id: ObjectId;
+  user_id: ObjectId;
+  address: Address;
+  basket: Basket;
+  status: OrderStatus;
+}
+
+export enum OrderStatus {
+  cancelled,
+  taken,
+  shipping,
+  shipped,
+}
