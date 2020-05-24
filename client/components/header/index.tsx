@@ -18,9 +18,6 @@ const useStyles = makeStyles({
   black: {
     color: "black",
   },
-  ml20: {
-    marginLeft: "20px",
-  },
   title: {
     fontFamily: '"Pacifico", cursive',
     fontSize: "25px",
@@ -68,7 +65,7 @@ const Header: FunctionComponent<Props> = ({ showAccountIcon = true }) => {
               <Badge badgeContent={itemCount} color="primary" variant="dot">
                 <ShoppingCart
                   fontSize="default"
-                  className={classNames(classes.ml20, classes.black)}
+                  className={classNames(classes.black)}
                 />
               </Badge>
             </IconButton>

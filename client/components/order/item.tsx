@@ -3,6 +3,9 @@ import {
   ListItem,
   ListItemText,
   ListItemSecondaryAction,
+  Theme,
+  makeStyles,
+  useTheme,
 } from "@material-ui/core";
 
 interface Props {
@@ -11,10 +14,25 @@ interface Props {
   price: number;
 }
 
+const useStyle = makeStyles((theme: Theme) => ({
+  price: {
+    color: theme.palette.primary.main,
+  },
+  item: {
+    paddingTop: "0px",
+    paddingBottom: "0px",
+  },
+}));
+
 const Item: FunctionComponent<Props> = ({ name, count, price }) => {
+  const theme = useTheme();
+  const classes = useStyle(theme);
   return (
-    <ListItem>
-      <ListItemText primary={name} secondary={`${count} adet - ${price} ₺`} />
+    <ListItem className={classes.item}>
+      <ListItemText primary={name} secondary={`${count} adet`} />
+      <ListItemSecondaryAction className={classes.price}>
+        {price} ₺
+      </ListItemSecondaryAction>
       <ListItemSecondaryAction></ListItemSecondaryAction>
     </ListItem>
   );

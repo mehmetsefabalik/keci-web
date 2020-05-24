@@ -1,13 +1,24 @@
 import React, { FunctionComponent } from "react";
 import { Basket, ObjectId } from "../../common/interface";
-import { List as MuiList } from "@material-ui/core";
+import { List as MuiList, makeStyles, ListSubheader } from "@material-ui/core";
 import { Item } from "./item";
 
 interface Props {
   basket: Basket;
 }
 
+const useStyle = makeStyles({
+  list: {
+    width: "100%",
+  },
+  subheader: {
+    lineHeight: "normal",
+  },
+});
+
 const List: FunctionComponent<Props> = ({ basket }) => {
+  const classes = useStyle();
+
   const getProduct = (id: ObjectId) =>
     basket.product_info.find((obj) => obj._id.$oid === id.$oid);
 
@@ -16,7 +27,15 @@ const List: FunctionComponent<Props> = ({ basket }) => {
   const getPriceOfProduct = (id: ObjectId) => getProduct(id).price;
 
   return (
-    <MuiList component="nav">
+    <MuiList
+      component="div"
+      className={classes.list}
+      subheader={
+        <ListSubheader className={classes.subheader} component="div">
+          Ürünler
+        </ListSubheader>
+      }
+    >
       {basket &&
         Array.isArray(basket.content) &&
         basket.content.map((item) => (

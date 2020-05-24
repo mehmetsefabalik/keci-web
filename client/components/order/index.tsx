@@ -11,41 +11,11 @@ import {
 } from "@material-ui/core";
 import { ExpandMore } from "@material-ui/icons";
 import { List } from "./list";
+import { Address } from "./address";
 
 interface Props {
   order: IOrder;
 }
-
-/*
-content: [
-  {
-    product_id: "a",
-    count: 1
-  },
-  {
-    product_id: "b",
-    count:3
-  },
-  {
-    product_id: "c",
-    count:5
-  }
-],
-product_info: [
-  {
-    _id: { $oid: "a" },
-    price: 15
-  },
-  {
-    _id: "b",
-    price: 30
-  },
-  {
-    _id: "c",
-    price: 50
-  }
-]
-*/
 
 const useStyle = makeStyles((theme: Theme) => ({
   productWrapper: {
@@ -53,6 +23,7 @@ const useStyle = makeStyles((theme: Theme) => ({
     flexDirection: "column",
   },
   panelSummary: {
+    fontSize: "1.2rem",
     "& .MuiExpansionPanelSummary-content": {
       justifyContent: "space-between",
       padding: "0 15px",
@@ -60,6 +31,10 @@ const useStyle = makeStyles((theme: Theme) => ({
   },
   summaryPrice: {
     color: theme.palette.primary.main,
+  },
+  details: {
+    marginTop: "10px",
+    flexDirection: "column",
   },
 }));
 
@@ -93,8 +68,9 @@ const Order: FunctionComponent<Props> = ({ order }) => {
           {getTotalPrice()} ₺
         </Typography>
       </ExpansionPanelSummary>
-      <ExpansionPanelDetails>
+      <ExpansionPanelDetails className={classes.details}>
         <List basket={order.basket} />
+        <Address address={order.address} />
       </ExpansionPanelDetails>
     </ExpansionPanel>
   );
