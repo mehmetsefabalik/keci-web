@@ -5,20 +5,32 @@ import { Header } from "../../client/components/header";
 import { AllowRegisteredUser } from "../../client/hocs/allow-registered-user";
 import { WithLoader } from "../../client/hocs/with-loader";
 import { GetServerSideProps } from "next";
+import { OrderDetail } from "../../client/containers/order-detail";
+import { useRouter } from "next/router";
+import { CheckoutSuccess } from "../../client/containers/checkout-success";
 
-const Odeme = ({ order }) => (
-  <WithLoader>
-    <AllowRegisteredUser cb="/odeme">
-      <WithNotification>
-        <Header />
-      </WithNotification>
-    </AllowRegisteredUser>
-  </WithLoader>
-);
+const Siparis = ({ order }) => {
+  const router = useRouter();
+
+  return (
+    <WithLoader>
+      <AllowRegisteredUser cb="/odeme">
+        <WithNotification>
+          <Header />
+          {router.query["as-success"] ? (
+            <CheckoutSuccess order={order} />
+          ) : (
+            <OrderDetail order={order} />
+          )}
+        </WithNotification>
+      </AllowRegisteredUser>
+    </WithLoader>
+  );
+};
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const response = await axios.get(
-    `${process.env.MOBILE_API}/order/${context.query.id}`,
+    `${process.env.MOBILE_API}/orders/${context.params.id}`,
     {
       headers: {
         cookie: context.req.headers.cookie,
@@ -28,4 +40,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return { props: { order: response.data } };
 };
 
-export default Odeme;
+export default Siparis;
