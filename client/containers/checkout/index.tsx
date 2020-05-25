@@ -34,7 +34,11 @@ const Checkout: FunctionComponent = () => {
       notif.setSeverity("success");
       notif.setMessage("Siparişiniz Oluşturuldu");
       notif.setOpen(true);
-      setTimeout(() => Router.replace("/"), 1000);
+      const json = await response.json();
+      setTimeout(
+        () => Router.replace(`/siparis/${json.$oid}?as-success=true`),
+        1000
+      );
     }
   };
   return (
