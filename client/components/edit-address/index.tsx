@@ -30,6 +30,7 @@ const EditAddress: FunctionComponent<Props> = ({ open, setOpen }) => {
   const classes = useStyles();
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
+  const [phone, setPhone] = useState("");
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
 
@@ -43,6 +44,7 @@ const EditAddress: FunctionComponent<Props> = ({ open, setOpen }) => {
       body: JSON.stringify({
         name,
         surname,
+        phone,
         title,
         text,
         addressIdToEdit: idToEdit,
@@ -76,6 +78,7 @@ const EditAddress: FunctionComponent<Props> = ({ open, setOpen }) => {
       if (address) {
         setName(address.name);
         setSurname(address.surname);
+        setPhone(address.phone);
         setTitle(address.title);
         setText(address.text);
       } else {
@@ -90,10 +93,12 @@ const EditAddress: FunctionComponent<Props> = ({ open, setOpen }) => {
         className={classes.form}
         name={name}
         surname={surname}
+        phone={phone}
         title={title}
         text={text}
         setName={setName}
         setSurname={setSurname}
+        setPhone={setPhone}
         setTitle={setTitle}
         setText={setText}
       />

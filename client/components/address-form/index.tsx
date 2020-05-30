@@ -1,14 +1,17 @@
 import React, { FunctionComponent, ChangeEvent } from "react";
 import { TextField, Grid, FormControl } from "@material-ui/core";
 import { Button } from "../button";
+import { PhoneInput } from "../phone-input";
 
 interface Props {
   name: string;
   surname: string;
+  phone: string;
   title: string;
   text: string;
   setName: (e: string) => void;
   setSurname: (e: string) => void;
+  setPhone: (e: string) => void;
   setTitle: (e: string) => void;
   setText: (e: string) => void;
   className?: string;
@@ -18,10 +21,12 @@ interface Props {
 const AddressForm: FunctionComponent<Props> = ({
   name,
   surname,
+  phone,
   title,
   text,
   setName,
   setSurname,
+  setPhone,
   setTitle,
   setText,
   onSubmit,
@@ -83,6 +88,11 @@ const AddressForm: FunctionComponent<Props> = ({
                 value={title}
                 onChange={onTitleChange}
               />
+            </FormControl>
+          </Grid>
+          <Grid item xs={12}>
+            <FormControl fullWidth>
+              <PhoneInput phone={phone} setPhone={setPhone} />
             </FormControl>
           </Grid>
           <Grid item xs={12}>

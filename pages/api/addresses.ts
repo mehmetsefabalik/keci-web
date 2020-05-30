@@ -4,9 +4,9 @@ import axios from "axios";
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
     case "POST":
-      const { name, surname, title, text } = req.body;
+      const { name, surname, phone, title, text } = req.body;
 
-      if (!name || !surname || !title || !text) {
+      if (!name || !surname || !phone || !title || !text) {
         return res.status(400).send({});
       }
 
@@ -17,7 +17,15 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         }
         const response = await axios.post(
           `${process.env.MOBILE_API}/addresses`,
-          { name, surname, title, text, district_id: 0, neighborhood_id: 0 },
+          {
+            name,
+            surname,
+            phone,
+            title,
+            text,
+            district_id: 0,
+            neighborhood_id: 0,
+          },
           { headers, withCredentials: true }
         );
         return res.status(200).json(response.data);
@@ -41,6 +49,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           {
             name: req.body.name,
             surname: req.body.surname,
+            phone: req.body.phone,
             title: req.body.title,
             text: req.body.text,
             district_id: 0,

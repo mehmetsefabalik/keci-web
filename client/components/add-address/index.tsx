@@ -28,6 +28,7 @@ const AddAddress: FunctionComponent<Props> = ({ open, setOpen }) => {
   const classes = useStyles();
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
+  const [phone, setPhone] = useState("");
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const onSubmit = async () => {
@@ -37,7 +38,7 @@ const AddAddress: FunctionComponent<Props> = ({ open, setOpen }) => {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name, surname, title, text }),
+      body: JSON.stringify({ name, surname, phone, title, text }),
     });
 
     if (response.ok) {
@@ -63,10 +64,12 @@ const AddAddress: FunctionComponent<Props> = ({ open, setOpen }) => {
         className={classes.form}
         name={name}
         surname={surname}
+        phone={phone}
         title={title}
         text={text}
         setName={setName}
         setSurname={setSurname}
+        setPhone={setPhone}
         setTitle={setTitle}
         setText={setText}
       />
