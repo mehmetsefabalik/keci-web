@@ -69,12 +69,18 @@ const AddressForm: FunctionComponent<Props> = ({
         >
           <Grid item xs={12}>
             <FormControl fullWidth>
-              <TextField label="İsim" value={name} onChange={onNameChange} />
+              <TextField
+                variant="outlined"
+                label="İsim"
+                value={name}
+                onChange={onNameChange}
+              />
             </FormControl>
           </Grid>
           <Grid item xs={12}>
             <FormControl fullWidth>
               <TextField
+                variant="outlined"
                 label="Soyisim"
                 value={surname}
                 onChange={onSurnameChange}
@@ -84,6 +90,7 @@ const AddressForm: FunctionComponent<Props> = ({
           <Grid item xs={12}>
             <FormControl fullWidth>
               <TextField
+                variant="outlined"
                 label="Adres Başlığı (Örnek: Evim)"
                 value={title}
                 onChange={onTitleChange}
@@ -98,7 +105,8 @@ const AddressForm: FunctionComponent<Props> = ({
           <Grid item xs={12}>
             <FormControl fullWidth>
               <TextField
-                label="Adres"
+                variant="outlined"
+                label="Adres (sokak, cadde, daire no vb)"
                 value={text}
                 onChange={onTextChange}
                 multiline

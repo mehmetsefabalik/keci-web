@@ -43,6 +43,7 @@ export interface Address {
   surname: string;
   title: string;
   text: string;
+  phone: string;
 }
 
 export type NotificationSeverity = "warning" | "error" | "success" | "info";

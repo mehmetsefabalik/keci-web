@@ -16,7 +16,6 @@ function NumberFormatCustom(props: NumberFormatCustomProps) {
       {...other}
       format="#(###) ### ## ##"
       placeholder="0(5__) ___ __ __"
-      defaultValue="0"
       mask="_"
       type="tel"
       getInputRef={inputRef}

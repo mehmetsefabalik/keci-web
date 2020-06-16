@@ -31,6 +31,15 @@ const AddAddress: FunctionComponent<Props> = ({ open, setOpen }) => {
   const [phone, setPhone] = useState("");
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
+
+  const reset = () => {
+    setName("");
+    setSurname("");
+    setPhone("");
+    setTitle("");
+    setText("");
+  };
+
   const onSubmit = async () => {
     const response = await fetch("/api/addresses", {
       method: "POST",
@@ -46,6 +55,7 @@ const AddAddress: FunctionComponent<Props> = ({ open, setOpen }) => {
       notif.setMessage("Adres Eklendi");
       notif.setOpen(true);
       update();
+      reset();
       setOpen(false);
     } else {
       console.log("error");
