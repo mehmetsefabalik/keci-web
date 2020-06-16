@@ -37,7 +37,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         return res.status(200).json(response.data);
       } catch (e) {
         console.log("error: ", e);
-        return res.status(500).json({ message: "Network Error" });
+        return res.status(e.response.status).send({});
       }
     case "GET":
       if (!req.cookies.access_token) {
@@ -54,8 +54,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         });
         return res.status(200).json(response.data);
       } catch (e) {
-        console.log("error: ", e);
-        return res.status(500).json({ message: "Network Error" });
+        if (e.response.status !== 404) {
+          console.log("error: ", e);
+        }
+        return res.status(e.response.status).send({});
       }
     case "PATCH":
       if (!req.cookies.access_token) {
@@ -79,7 +81,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         return res.status(200).json(response.data);
       } catch (e) {
         console.log("error: ", e);
-        return res.status(500).json({ message: "Network Error" });
+        return res.status(e.response.status).send({});
       }
   }
 };
