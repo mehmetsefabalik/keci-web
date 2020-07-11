@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState, useEffect } from "react";
-import { Address } from "../../common/interface";
+import { Address } from "../../interfaces/interface";
 import { AddressProvider } from "../../context/address";
 
 const WithAddress: FunctionComponent = ({ children }) => {

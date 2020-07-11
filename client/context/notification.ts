@@ -1,5 +1,5 @@
 import React, { Context } from "react";
-import { NotificationContext as INotificationContext } from "../common/interface";
+import { NotificationContext as INotificationContext } from "../interfaces/interface";
 
 const NotificationContext: Context<Partial<
   INotificationContext

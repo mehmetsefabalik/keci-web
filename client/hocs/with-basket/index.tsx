@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState, useEffect } from "react";
 import { BasketProvider } from "../../context/basket";
-import { Basket } from "../../common/interface";
+import { Basket } from "../../interfaces/interface";
 
 const WithBasket: FunctionComponent = ({ children }) => {
   const [basket, setBasket] = useState<Basket>();

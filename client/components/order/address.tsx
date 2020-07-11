@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { Address as IAddress } from "../../common/interface";
+import { Address as IAddress } from "../../interfaces/interface";
 import {
   ListSubheader,
   ListItem,

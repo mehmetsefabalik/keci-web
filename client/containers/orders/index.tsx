@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { Order as IOrder } from "../../common/interface";
+import { Order as IOrder } from "../../interfaces/interface";
 import { Order } from "../../components/order";
 import { makeStyles, ListSubheader } from "@material-ui/core";
 

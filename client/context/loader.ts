@@ -1,5 +1,5 @@
 import React, { Context } from "react";
-import { LoaderContext as ILoaderContext } from "../common/interface";
+import { LoaderContext as ILoaderContext } from "../interfaces/interface";
 
 const LoaderContext: Context<Partial<ILoaderContext>> = React.createContext({});
 

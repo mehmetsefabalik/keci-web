@@ -1,5 +1,5 @@
 import React, { Context } from "react";
-import { BasketContext as IBasketContext } from "../common/interface";
+import { BasketContext as IBasketContext } from "../interfaces/interface";
 
 const BasketContext: Context<Partial<IBasketContext>> = React.createContext({});
 

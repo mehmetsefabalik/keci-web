@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { Basket, ObjectId } from "../../common/interface";
+import { Basket, ObjectId } from "../../interfaces/interface";
 import { List as MuiList, makeStyles, ListSubheader } from "@material-ui/core";
 import { Item } from "./item";
 

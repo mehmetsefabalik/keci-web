@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from "react";
-import { NotificationSeverity } from "../../common/interface";
+import { NotificationSeverity } from "../../interfaces/interface";
 import { NotificationProvider } from "../../context/notification";
 import { Notification } from "../../components/notification";
 

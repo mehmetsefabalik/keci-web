@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { Order as IOrder } from "../../common/interface";
+import { Order as IOrder } from "../../interfaces/interface";
 import { List } from "../../components/order/list";
 import { Address } from "../../components/order/address";
 import { makeStyles, Typography } from "@material-ui/core";

@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { Snackbar } from "@material-ui/core";
 import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
-import { NotificationSeverity } from "../../common/interface";
+import { NotificationSeverity } from "../../interfaces/interface";
 
 interface Props {
   open: boolean;
