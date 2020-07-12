@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import { WithNotification } from "../../client/hocs/with-notification";
 import { Header } from "../../client/components/header";
-import { AllowRegisteredUser } from "../../client/hocs/allow-registered-user";
 import { WithLoader } from "../../client/hocs/with-loader";
 import { GetServerSideProps } from "next";
 import { OrderDetail } from "../../client/containers/order-detail";
@@ -14,16 +13,14 @@ const Siparis = ({ order }) => {
 
   return (
     <WithLoader>
-      <AllowRegisteredUser cb="/odeme">
-        <WithNotification>
-          <Header />
-          {router.query["as-success"] ? (
-            <CheckoutSuccess order={order} />
-          ) : (
-            <OrderDetail order={order} />
-          )}
-        </WithNotification>
-      </AllowRegisteredUser>
+      <WithNotification>
+        <Header />
+        {router.query["as-success"] ? (
+          <CheckoutSuccess order={order} />
+        ) : (
+          <OrderDetail order={order} />
+        )}
+      </WithNotification>
     </WithLoader>
   );
 };

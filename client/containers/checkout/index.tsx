@@ -37,7 +37,7 @@ const Checkout: FunctionComponent = () => {
       const json = await response.json();
       setTimeout(
         () => Router.replace(`/siparis/${json.$oid}?as-success=true`),
-        1000
+        500
       );
     }
   };

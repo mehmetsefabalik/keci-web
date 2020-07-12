@@ -57,7 +57,7 @@ const Giris = () => {
         <Grid item xs={10} sm={3}>
           {tab === 0 ? <Login /> : <Signup />}
           <Link
-            style={{ marginTop: "10px" }}
+            style={{ marginTop: "10px", cursor: "pointer" }}
             onClick={() => Router.replace("/odeme?allow-guest=true")}
           >
             Kayıt Olmadan Devam Et
