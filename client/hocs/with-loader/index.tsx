@@ -17,7 +17,7 @@ const WithLoader: FunctionComponent = ({ children }) => {
         top: 0,
         left: 0,
         background: "rgba(51, 51, 51, 0.7)",
-        zIndex: 1101,
+        zIndex: 2001,
       }}
     >
       <CircularProgress disableShrink />
