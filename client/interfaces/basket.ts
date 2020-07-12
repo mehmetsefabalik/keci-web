@@ -24,6 +24,8 @@ export interface Product {
 }
 
 export interface BasketItem {
+  listing_id: ObjectId;
+  seller_id: ObjectId;
   product_id: ObjectId;
   count: number;
 }

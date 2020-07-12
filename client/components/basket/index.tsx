@@ -14,7 +14,7 @@ const Basket: FunctionComponent<{}> = () => {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ product_id: id, count }),
+      body: JSON.stringify({ id, count }),
     });
     updateBasket();
   };
@@ -28,7 +28,7 @@ const Basket: FunctionComponent<{}> = () => {
         basket.content.map((item, i) => (
           <Item
             key={i.toString()}
-            id={item.product_id.$oid}
+            id={item.listing_id.$oid}
             name={getItemName(item.product_id.$oid)}
             count={item.count}
             update={updateItem}

@@ -18,7 +18,7 @@ interface Props {
 
 const useStyles = makeStyles({
   form: {
-    padding: "20px 10px 40px 10px",
+    padding: "20px 10px 70px 10px",
   },
 });
 

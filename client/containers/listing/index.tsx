@@ -33,7 +33,7 @@ const Listing: FunctionComponent<Props> = ({ items }) => {
             listing.type === "product" ? (
               <Grid key={i.toString()} item xs={6} md={3} lg={2}>
                 <ProductCard
-                  id={listing.product._id.$oid}
+                  id={listing._id.$oid}
                   name={listing.product.name}
                   price={listing.product.price}
                   oldPrice={listing.product.old_price}

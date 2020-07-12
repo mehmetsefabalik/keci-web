@@ -52,7 +52,7 @@ const ProductCard: FunctionComponent<Props> = ({
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ product_id: id }),
+      body: JSON.stringify({ id }),
     });
     updateBasket();
   };
