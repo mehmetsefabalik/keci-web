@@ -20,14 +20,20 @@ export default class MyApp extends App {
     return (
       <React.Fragment>
         <Head>
-          <title>Keçi Sütü Sipariş</title>
+          <title>Köyden Evine Doğal Ürünler</title>
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta
             name="viewport"
             content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1"
           />
-          <meta name="description" content="Keçi Sütü Sipariş" />
-          <meta name="keywords" content="Keçi Sütü Sipariş" />
+          <meta
+            name="description"
+            content="Köyden evine doğal ürünler kapında, süt, peynir, keçi sütü, keçi peyniri, erik, armut, nektari, kiraz, şeftali, kayısı, vişne"
+          />
+          <meta
+            name="keywords"
+            content="köyden, doğal, süt, keçi sütü, keçi peyniri, erik, armut, nektari, kiraz, şeftali, kayısı, vişne"
+          />
 
           <link rel="manifest" href="/manifest.json" />
           <link rel="apple-touch-icon" href="/apple-icon.png"></link>
