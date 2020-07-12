@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
-import { getExpireDate } from "../../client/common/util";
+import { getExpireDate } from "../../client/utils/cookie";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {

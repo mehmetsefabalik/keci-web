@@ -5,7 +5,7 @@ import { Button } from "../../components/button";
 import { PhoneInput } from "../../components/phone-input";
 import { PasswordInput } from "../../components/password-input";
 import NotificationContext from "../../context/notification";
-import { error, success } from "../../common/util";
+import { error, success } from "../../utils/notification";
 
 const useStyles = makeStyles({
   root: {

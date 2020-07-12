@@ -1,5 +1,5 @@
 import React, { Context } from "react";
-import { AddressContext as IAddressContext } from "../interfaces/interface";
+import { AddressContext as IAddressContext } from "../interfaces/address";
 
 const AddressContext: Context<Partial<IAddressContext>> = React.createContext(
   {}

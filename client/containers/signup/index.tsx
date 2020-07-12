@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core";
 import { Button } from "../../components/button";
 import { PhoneInput } from "../../components/phone-input";
 import { PasswordInput } from "../../components/password-input";
-import { error, success } from "../../common/util";
+import { error, success } from "../../utils/notification";
 import NotificationContext from "../../context/notification";
 
 const useStyles = makeStyles({

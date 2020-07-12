@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from "react";
-import { Order as IOrder, ObjectId } from "../../interfaces/interface";
+import { Order as IOrder } from "../../interfaces/order";
+import { ObjectId } from "../../interfaces";
 import {
   ExpansionPanel,
   ExpansionPanelSummary,

@@ -9,7 +9,7 @@ import { AddressForm } from "../address-form";
 import { makeStyles } from "@material-ui/core";
 import AddressContext from "../../context/address";
 import NotificationContext from "../../context/notification";
-import { warning } from "../../common/util";
+import { warning } from "../../utils/notification";
 
 interface Props {
   open: boolean;

@@ -1,4 +1,4 @@
-import { ObjectId } from "./interface";
+import { ObjectId } from ".";
 
 export interface Listing {
   type: ListingType;
@@ -14,4 +14,3 @@ export interface Product {
 }
 
 export type ListingType = "product" | "content" | "widget";
-

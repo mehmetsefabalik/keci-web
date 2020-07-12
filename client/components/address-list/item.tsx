@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useContext } from "react";
 import { Typography, Paper, makeStyles } from "@material-ui/core";
-import { Address } from "../../interfaces/interface";
+import { Address } from "../../interfaces/address";
 import { Button } from "../button";
 import AddressContext from "../../context/address";
 

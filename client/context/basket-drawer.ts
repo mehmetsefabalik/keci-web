@@ -1,5 +1,5 @@
 import React, { Context } from "react";
-import { BasketDrawerContext as IBasketDrawerContext } from "../interfaces/interface";
+import { BasketDrawerContext as IBasketDrawerContext } from "../interfaces/basket-drawer";
 
 const BasketDrawerContext: Context<Partial<
   IBasketDrawerContext
