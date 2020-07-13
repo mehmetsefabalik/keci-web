@@ -9,7 +9,7 @@ import { Orders } from "../client/containers/orders";
 
 const Siparislerim = ({ orders }) => (
   <WithLoader>
-    <AllowRegisteredUser cb="/odeme">
+    <AllowRegisteredUser cb="/odeme" allowGuest>
       <WithNotification>
         <Header />
         <Orders orders={orders} />

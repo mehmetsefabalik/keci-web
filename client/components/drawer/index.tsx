@@ -11,6 +11,7 @@ export interface Props {
   open: boolean;
   setOpen: (e: boolean) => void;
   anchor: "bottom" | "left" | "right" | "top";
+  high?: boolean;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -20,6 +21,9 @@ const useStyles = makeStyles((theme: Theme) =>
         borderRadius: "5px",
       },
     },
+    high: {
+      zIndex: "1302 !important" as any,
+    },
   })
 );
 
@@ -28,13 +32,14 @@ const Drawer: FunctionComponent<Props> = ({
   setOpen,
   children,
   anchor,
+  high,
 }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
   return (
     <>
       <SwipeableDrawer
-        className={classes.sheet}
+        className={`${high ? classes.high : ""} ${classes.sheet}`}
         id="bottom-drawer"
         anchor={anchor}
         open={open}

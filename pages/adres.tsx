@@ -7,6 +7,8 @@ import { WithNotification } from "../client/hocs/with-notification";
 import { Header } from "../client/components/header";
 import { EditAddress } from "../client/components/edit-address";
 import { WithAddress } from "../client/hocs/with-address";
+import { AllowRegisteredUser } from "../client/hocs/allow-registered-user";
+import { WithLoader } from "../client/hocs/with-loader";
 
 const useStyles = makeStyles({
   fab: {
@@ -23,32 +25,36 @@ const Adres = () => {
   const [editAddressFormOpen, setEditAddressFormOpen] = useState(false);
 
   return (
-    <WithNotification>
-      <WithAddress>
-        <Header />
-        <Grid container alignItems="center" justify="center">
-          <AddressList />
-          <AddAddress
-            open={addAddressFormOpen}
-            setOpen={setAddAddressFormOpen}
-          />
-          <EditAddress
-            open={editAddressFormOpen}
-            setOpen={setEditAddressFormOpen}
-          />
-          <Fab
-            className={classes.fab}
-            color="primary"
-            aria-label="add"
-            size="large"
-            variant="extended"
-            onClick={() => setAddAddressFormOpen(true)}
-          >
-            <Add /> Adres Ekle
-          </Fab>
-        </Grid>
-      </WithAddress>
-    </WithNotification>
+    <WithLoader>
+      <AllowRegisteredUser cb="/odeme" allowGuest>
+        <WithNotification>
+          <WithAddress>
+            <Header />
+            <Grid container alignItems="center" justify="center">
+              <AddressList />
+              <AddAddress
+                open={addAddressFormOpen}
+                setOpen={setAddAddressFormOpen}
+              />
+              <EditAddress
+                open={editAddressFormOpen}
+                setOpen={setEditAddressFormOpen}
+              />
+              <Fab
+                className={classes.fab}
+                color="primary"
+                aria-label="add"
+                size="large"
+                variant="extended"
+                onClick={() => setAddAddressFormOpen(true)}
+              >
+                <Add /> Adres Ekle
+              </Fab>
+            </Grid>
+          </WithAddress>
+        </WithNotification>
+      </AllowRegisteredUser>
+    </WithLoader>
   );
 };
 

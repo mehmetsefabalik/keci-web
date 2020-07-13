@@ -68,7 +68,7 @@ const AddAddress: FunctionComponent<Props> = ({ open, setOpen }) => {
     }
   }, [addresses]);
   return (
-    <Drawer open={open} setOpen={setOpen} anchor="bottom">
+    <Drawer open={open} setOpen={setOpen} anchor="bottom" high>
       <AddressForm
         onSubmit={onSubmit}
         className={classes.form}

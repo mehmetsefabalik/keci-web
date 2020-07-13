@@ -8,7 +8,7 @@ import { WithLoader } from "../client/hocs/with-loader";
 
 const Account: FunctionComponent = () => (
   <WithLoader>
-    <AllowRegisteredUser cb="/hesabim">
+    <AllowRegisteredUser cb="/hesabim" allowGuest>
       <WithBasket>
         <WithBasketDrawer>
           <Header />

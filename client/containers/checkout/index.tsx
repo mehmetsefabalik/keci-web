@@ -6,6 +6,7 @@ import { BasketItemList } from "../../components/basket-item-list";
 import { BottomBar } from "../../components/bottom-bar";
 import { AddAddress } from "../../components/add-address";
 import NotificationContext from "../../context/notification";
+import AddressContext from "../../context/address";
 
 const useStyle = makeStyles({
   mt20: {
@@ -17,6 +18,7 @@ const useStyle = makeStyles({
 const Checkout: FunctionComponent = () => {
   const classes = useStyle();
   const notif = useContext(NotificationContext);
+  const { addresses } = useContext(AddressContext);
   const [addAddressOpen, setAddAddressOpen] = useState(false);
   const [selectedAddressId, setSelectedAddressId] = useState("");
 
@@ -59,7 +61,12 @@ const Checkout: FunctionComponent = () => {
             </Paper>
           </Grid>
           <Grid item xs={10} sm={8} md={8} className={classes.mt20}>
-            <Paper elevation={2}>
+            <Paper
+              elevation={2}
+              onClick={() => {
+                if (!addresses.length) setAddAddressOpen(true);
+              }}
+            >
               <AddressSelect
                 selectedAddressId={selectedAddressId}
                 setSelectedAddressId={setSelectedAddressId}

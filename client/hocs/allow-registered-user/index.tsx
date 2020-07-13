@@ -4,9 +4,14 @@ import LoaderContext from "../../context/loader";
 
 interface Props {
   cb: string;
+  allowGuest?: boolean;
 }
 
-const AllowRegisteredUser: FunctionComponent<Props> = ({ children, cb }) => {
+const AllowRegisteredUser: FunctionComponent<Props> = ({
+  children,
+  cb,
+  allowGuest,
+}) => {
   const { setOpen } = useContext(LoaderContext);
   const fetchMe = async () => {
     if (setOpen) setOpen(true);
@@ -15,7 +20,8 @@ const AllowRegisteredUser: FunctionComponent<Props> = ({ children, cb }) => {
       const data = await response.json();
       if (
         data.user_type === "guest" &&
-        !new URLSearchParams(window.location.search).has("allow-guest")
+        !new URLSearchParams(window.location.search).has("allow-guest") &&
+        !allowGuest
       ) {
         return Router.replace(`/giris?cb=${cb}`);
       }
